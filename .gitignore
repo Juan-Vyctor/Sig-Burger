@@ -43,6 +43,7 @@
 *.pif
 *.vb
 *.wsf
+main
 
 # Debug files
 *.dSYM/
