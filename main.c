@@ -4,6 +4,7 @@
 
 void tela_principal(void);
 void tela_sobre(void);
+void tela_equiope(void);
 
 //progama principal
 int main(void)
@@ -73,5 +74,28 @@ void tela_sobre(void) {
     printf("///  a satisfação dos clientes em um serviço rápido e eficiente.            ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+
+void tela_equipe(void) {
+
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///             Este projeto está em desenvolvimento por:                    ///\n");
+    printf("///                                                                          ///\n");
+    printf("///             Renan Medeiros Nogueira                                      ///\n");
+    printf("///             E-mail: renan.medeiros.150@ufrn.edu.br                       ///\n");
+    printf("///             Git: https://github.com/Renan988                             ///\n");
+    printf("///                                                                          ///\n");
+    printf("///             Juan Vyctor Silva Garcia de Oliveira                         ///\n");
+    printf("///             E-mail: juanvyctor.sgo@gmail.com                             ///\n");    
+    printf("///             Git: https://github.com/Juan-Vyctor                          ///\n");
+    printf("///                                                                          ///\n");
+    printf("///      Link do Projeto: https://github.com/Juan-Vyctor/Sig-Burger.git      ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
