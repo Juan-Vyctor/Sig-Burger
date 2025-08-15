@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 //assinatura das funções
+
 void tela_principal(void);
+void tela_sobre(void);
 
 //progama principal
 int main(void)
@@ -50,6 +52,25 @@ void tela_principal(void) {
     printf("///            3. Histórico                                                 ///\n");
     printf("///            4. Sobre o Sig-Burguer                                       ///\n");
     printf("///            0. Sair                                                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+
+void tela_sobre(void) {
+    printf("\n")
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///  Sistema de hamburgueria voltado para atendimento via delivery.         ///\n");
+    printf("///  Permite cadastrar clientes, gerenciar pedidos, controlar o cardápio    ///\n");
+    printf("///  e acompanhar o status das entregas. Oferece ferramentas para agilizar  ///\n");
+    printf("///  o atendimento e manter o histórico de vendas de forma simples e segura.///\n");
+    printf("///                                                                         ///\n");
+    printf("///  Ideal para otimizar o processo de compra, preparar pedidos e garantir  ///\n");
+    printf("///  a satisfação dos clientes em um serviço rápido e eficiente.            ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
