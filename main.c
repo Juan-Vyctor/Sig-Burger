@@ -7,6 +7,8 @@ void tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 void tela_cardapio(void);
+void tela_fazer_pedido(void);
+void tela_historico(void);
 
 //progama principal
 int main(void)
@@ -117,6 +119,36 @@ void tela_cardapio(void)
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
     printf("///                               Cardápio                                   ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Em breve...                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_fazer_pedido(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                            Faça seu pedido                               ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Em breve...                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_historico(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                     Registro de pedidos do usuário                       ///\n");
     printf("///                                                                          ///\n");
     printf("///                               Em breve...                                ///\n");
     printf("///                                                                          ///\n");
