@@ -11,6 +11,7 @@ void tela_cardapio(void);
 //progama principal
 int main(void)
 {
+    system("clear");
     int operacao_principal;
     do {
         tela_principal();
@@ -51,7 +52,6 @@ int main(void)
 //Funções
 void tela_principal(void)
 {
-    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -60,12 +60,12 @@ void tela_principal(void)
     printf("///            2. Pedido                                                    ///\n");
     printf("///            3. Histórico                                                 ///\n");
     printf("///            4. Sobre o Sig-Burguer                                       ///\n");
+    printf("///            5. Sobre a Equipe                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
-
 
 void tela_sobre(void)
 {
