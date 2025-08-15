@@ -4,36 +4,41 @@
 
 void tela_principal(void);
 void tela_sobre(void);
-void tela_equiope(void);
+void tela_equipe(void);
 void tela_cardapio(void);
 
 //progama principal
 int main(void)
 {
-    printf("Bem vindo a Sig Burguers!");
-
     int operacao_principal;
     do {
-        printf("\nDigite 1 para o cardápio, 2 para um pedido, 3 para o histórico, 4 para nosso Sobre, e 0 para finalizar:\n");
+        tela_principal();
         scanf("%d", &operacao_principal);
-        printf("\n");
 
         if (operacao_principal == 1)
         {
-            printf("Aqui está o Cardápio");
+            tela_cardapio();
         }
         else if (operacao_principal == 2)
         {
-            printf("Faça o seu pedido");
+            printf("Faça o seu pedido:\n");
+            printf("Em breve...\n");
         }
         else if (operacao_principal == 3)
         {
-            printf("Aqui está o histórico dos seus pedidos");
+            printf("Aqui está o histórico dos seus pedidos\n");
+            printf("Em breve...\n");
         } 
-        else if (operacao_principal == 4) {
-            printf("Sobre nós");
-        } 
-        else if (operacao_principal != 0) {
+        else if (operacao_principal == 4)
+        {
+            tela_sobre();
+        }
+        else if (operacao_principal == 5)
+        {
+            tela_equipe();
+        }
+        else if (operacao_principal != 0)
+        {
             printf("Está opção é inválida, retornando ao menu inicial...");
         }
     } while (operacao_principal != 0);
@@ -43,8 +48,8 @@ int main(void)
 }
 
 //Funções
-void tela_principal(void) {
-    printf("\n");
+void tela_principal(void)
+{
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -60,8 +65,8 @@ void tela_principal(void) {
 }
 
 
-void tela_sobre(void) {
-    printf("\n")
+void tela_sobre(void)
+{
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -78,9 +83,8 @@ void tela_sobre(void) {
     printf("\n");
 }
 
-
-void tela_equipe(void) {
-
+void tela_equipe(void)
+{
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -101,9 +105,8 @@ void tela_equipe(void) {
     printf("\n");
 }
 
-
-void tela_cardapio(void) {
-
+void tela_cardapio(void)
+{
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
