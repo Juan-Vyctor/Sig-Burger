@@ -25,13 +25,11 @@ int main(void)
         }
         else if (operacao_principal == 2)
         {
-            printf("Faça o seu pedido:\n");
-            printf("Em breve...\n");
+            tela_fazer_pedido();
         }
         else if (operacao_principal == 3)
         {
-            printf("Aqui está o histórico dos seus pedidos\n");
-            printf("Em breve...\n");
+            tela_historico();
         } 
         else if (operacao_principal == 4)
         {
