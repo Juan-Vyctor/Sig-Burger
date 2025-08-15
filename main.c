@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 //assinatura das funções
 
@@ -50,6 +51,7 @@ int main(void)
 //Funções
 void tela_principal(void)
 {
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -67,6 +69,7 @@ void tela_principal(void)
 
 void tela_sobre(void)
 {
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -85,6 +88,7 @@ void tela_sobre(void)
 
 void tela_equipe(void)
 {
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -107,6 +111,7 @@ void tela_equipe(void)
 
 void tela_cardapio(void)
 {
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
