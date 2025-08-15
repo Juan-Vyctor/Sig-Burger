@@ -5,6 +5,7 @@
 void tela_principal(void);
 void tela_sobre(void);
 void tela_equiope(void);
+void tela_cardapio(void);
 
 //progama principal
 int main(void)
@@ -95,6 +96,21 @@ void tela_equipe(void) {
     printf("///             Git: https://github.com/Juan-Vyctor                          ///\n");
     printf("///                                                                          ///\n");
     printf("///      Link do Projeto: https://github.com/Juan-Vyctor/Sig-Burger.git      ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+
+void tela_cardapio(void) {
+
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Cardápio                                   ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Em breve...                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
