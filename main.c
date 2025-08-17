@@ -138,7 +138,11 @@ void tela_fazer_pedido(void)
     printf("///                                                                          ///\n");
     printf("///                            Faça seu pedido                               ///\n");
     printf("///                                                                          ///\n");
-    printf("///                               Em breve...                                ///\n");
+    printf("///   Para realizar seu pedido, informe:                                     ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Endereço de entrega (rua, número, bairro, complemento).              ///\n");
+    printf("///   - Número(s) do(s) item(ns) desejado(s) do cardápio.                    ///\n");
+    printf("///   - Nome do cliente para registrar o pedido.                             ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
