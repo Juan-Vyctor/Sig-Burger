@@ -9,7 +9,7 @@ void tela_equipe(void);
 void tela_cardapio(void);
 void tela_fazer_pedido(void);
 void tela_historico(void);
-void tela_sair(void);
+void tela_confirmacao(void);
 
 //progama principal
 int main(void)
@@ -46,7 +46,7 @@ int main(void)
         }
         else
         {
-            tela_sair();
+            tela_confirmacao();
         }
 
     } while (operacao_principal != 0);
@@ -169,7 +169,7 @@ void tela_historico(void)
     printf("\n");
 }
 
-void tela_sair(void)
+void tela_confirmacao(void)
 {
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -177,8 +177,8 @@ void tela_sair(void)
     printf("///                                                                          ///\n");
     printf("///                      Deseja finalizar o programa?                        ///\n");
     printf("///                                                                          ///\n");
-    printf("///                   1 - Continuar no SIG-Burguer                           ///\n");
-    printf("///                   0 - Sair do SIG-Burguer                                ///\n");
+    printf("///                   1 - Continuar no Sig-Burguer                           ///\n");
+    printf("///                   0 - Sair do Sig-Burguer                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
