@@ -10,7 +10,7 @@ void tela_cardapio(void);
 void tela_fazer_pedido(void);
 void tela_historico(void);
 void tela_confirmacao(void);
-void tela_obrigado(void);
+void tela_saida(void);
 
 //progama principal
 int main(void)
@@ -52,7 +52,7 @@ int main(void)
 
     } while (operacao_principal != 0);
 
-    tela_obrigado();
+    tela_saida();
     return 0;
 }
 
@@ -185,7 +185,7 @@ void tela_confirmacao(void)
     printf("\n");
 }
 
-void tela_obrigado(void)
+void tela_saida(void)
 {
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
