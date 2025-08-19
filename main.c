@@ -3,7 +3,7 @@
 
 //assinatura das funções
 
-void tela_principal(void);
+int tela_principal();
 void tela_sobre(void);
 void tela_equipe(void);
 void tela_cardapio(void);
@@ -18,8 +18,7 @@ int main(void)
     system("clear");
     int operacao_principal;
     do {
-        tela_principal();
-        scanf("%d", &operacao_principal);
+        operacao_principal = tela_principal();
 
         if (operacao_principal == 1)
         {
@@ -57,8 +56,9 @@ int main(void)
 }
 
 //Funções
-void tela_principal(void)
+int tela_principal()
 {
+    int operacao = 0;
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -72,6 +72,8 @@ void tela_principal(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    return operacao;
 }
 
 void tela_sobre(void)
