@@ -6,7 +6,7 @@
 int tela_principal(void);
 
 // funções de produtos
-void tela_cardapio(void);
+int tela_cardapio(void);
 void tela_produto(void);
 
 // funções de pedido
@@ -85,8 +85,9 @@ int tela_principal(void)
     return operacao;
 }
 
-void tela_cardapio(void)
+int tela_cardapio(void)
 {
+    int operacao = 0;
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -101,8 +102,11 @@ void tela_cardapio(void)
     printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
     printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
     printf("///                                                                          ///\n");
+    printf("///   Digite o número do produto que deseja ver, ou 0 para sair              ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    return operacao;
 }
 
 void tela_produto(void)
