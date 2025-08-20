@@ -25,13 +25,19 @@ void tela_saida(void);
 int main(void)
 {
     system("clear");
-    int operacao_principal;
+    int operacao_principal = 0;
+    int operacao_secundaria = 0;
     do {
         operacao_principal = tela_principal();
 
         if (operacao_principal == 1)
         {
-            tela_cardapio();
+            operacao_secundaria = tela_cardapio();
+            
+            if (operacao_secundaria != 0)
+            {
+                tela_produto();
+            }
         }
         else if (operacao_principal == 2)
         {
