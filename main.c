@@ -3,10 +3,11 @@
 
 //assinatura das funções
 
-int tela_principal();
+int tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 void tela_cardapio(void);
+void tela_produto(void);
 void tela_fazer_pedido(void);
 void tela_historico(void);
 void tela_confirmacao(void);
@@ -56,7 +57,7 @@ int main(void)
 }
 
 //Funções
-int tela_principal()
+int tela_principal(void)
 {
     int operacao = 0;
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -133,6 +134,31 @@ void tela_cardapio(void)
     printf("///   4. Veggie Burguer ................................... R$ 20,00         ///\n");
     printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
     printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_produto(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Detalhes do Pedido                             ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Item: Duplo Smash                                                      ///\n");
+    printf("///   Preço: R$ 25,00                                                        ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Ingredientes:                                                          ///\n");
+    printf("///     - Dois hambúrgueres smash 100g cada                                  ///\n");
+    printf("///     - Queijo cheddar derretido                                           ///\n");
+    printf("///     - Bacon crocante                                                     ///\n");
+    printf("///     - Cebola caramelizada                                                ///\n");
+    printf("///     - Picles                                                             ///\n");
+    printf("///     - Molho especial da casa                                             ///\n");
+    printf("///     - Pão brioche levemente tostado                                      ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
