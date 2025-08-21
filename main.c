@@ -8,6 +8,7 @@ int tela_principal(void);
 // funções de produtos
 int tela_cardapio(void);
 void tela_produto(void);
+void tela_adicionar_produto(void);
 
 // funções de pedido
 void tela_fazer_pedido(void);
@@ -135,6 +136,27 @@ void tela_produto(void)
     printf("///     - Picles                                                             ///\n");
     printf("///     - Molho especial da casa                                             ///\n");
     printf("///     - Pão brioche levemente tostado                                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_adicionar_produto(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                        Adicionar Novo Hambúrguer                         ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Para cadastrar um novo hambúrguer, informe:                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Nome do hambúrguer:                                                  ///\n");
+    printf("///   - Preço (em R$):                                                       ///\n");
+    printf("///   - Ingredientes (separe por vírgulas):                                  ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Cada um dos detalhes deverá ser enviado numa mensagem separada       ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
