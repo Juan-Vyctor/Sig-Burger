@@ -28,17 +28,32 @@ int main(void)
     system("clear");
     int operacao_principal = 0;
     int operacao_secundaria = 0;
+
+    // variavel temporarária de auxílio
+    int auxiliar = 0;
     do {
         operacao_principal = tela_principal();
 
         if (operacao_principal == 1)
         {
-            operacao_secundaria = tela_cardapio();
-            
-            if (operacao_secundaria != 0)
+            printf("\nO que deseja fazer?\n1 - ver cardápio\n2 - adicionar produto\n");
+            scanf("%d", &auxiliar);
+
+            if (auxiliar == 1)
             {
-                tela_produto();
+                operacao_secundaria = tela_cardapio();
+                
+                if (operacao_secundaria != 0)
+                {
+                    tela_produto();
+                }
+
             }
+            else if (auxiliar == 2)
+            {
+                tela_adicionar_produto();
+            }
+            
         }
         else if (operacao_principal == 2)
         {
