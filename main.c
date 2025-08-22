@@ -11,7 +11,7 @@ void tela_produto(void);
 void tela_adicionar_produto(void);
 
 // funções de pedido
-void tela_fazer_pedido(void);
+void tela_informacoes_pedido(void);
 
 // funções de histórico
 void tela_historico(void);
@@ -57,7 +57,7 @@ int main(void)
         }
         else if (operacao_principal == 2)
         {
-            tela_fazer_pedido();
+            tela_informacoes_pedido();
         }
         else if (operacao_principal == 3)
         {
@@ -177,14 +177,14 @@ void tela_adicionar_produto(void)
     printf("\n");
 }
 
-void tela_fazer_pedido(void)
+void tela_informacoes_pedido(void)
 {
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
-    printf("///                            Faça seu pedido                               ///\n");
+    printf("///                        informações do seu pedido                         ///\n");
     printf("///                                                                          ///\n");
     printf("///   Para realizar seu pedido, informe:                                     ///\n");
     printf("///                                                                          ///\n");
