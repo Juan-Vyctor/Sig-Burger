@@ -12,6 +12,7 @@ void tela_adicionar_produto(void);
 
 // funções de pedido
 void tela_informacoes_pedido(void);
+void tela_endereco(void);
 
 // funções de histórico
 void tela_historico(void);
@@ -192,6 +193,24 @@ void tela_informacoes_pedido(void)
     printf("///   - Número(s) do(s) item(ns) desejado(s) do cardápio.                    ///\n");
     printf("///   - Nome do cliente para registrar o pedido.                             ///\n");
     printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_endereco(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///          Preencha os dados a seguir sobre o endereço da entrega          ///\n");
+    printf("///                                                                          ///\n");
+    printf("///    Bairro:                                                               ///\n");
+    printf("///    Rua:                                                                  ///\n");
+    printf("///    Número:                                                               ///\n");
+    printf("///    Complemento:                                                          ///\n");
+    printf("///                                                                          ///\n"); 
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
