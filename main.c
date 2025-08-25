@@ -3,12 +3,25 @@
 
 //assinatura das funções
 
-void tela_principal(void);
+int tela_principal(void);
+
+// funções de produtos
+int tela_cardapio(void);
+void tela_produto(void);
+void tela_adicionar_produto(void);
+
+// funções de pedido
+void tela_informacoes_pedido(void);
+void tela_endereco(void);
+void tela_informar_item(void);
+void tela_dados_cliente(void);
+
+// funções de histórico
+void tela_historico(void);
+
+// funções gerais
 void tela_sobre(void);
 void tela_equipe(void);
-void tela_cardapio(void);
-void tela_fazer_pedido(void);
-void tela_historico(void);
 void tela_confirmacao(void);
 void tela_saida(void);
 
@@ -16,18 +29,38 @@ void tela_saida(void);
 int main(void)
 {
     system("clear");
-    int operacao_principal;
+    int operacao_principal = 0;
+    int operacao_secundaria = 0;
+
+    // variavel temporarária de auxílio
+    int auxiliar = 0;
     do {
-        tela_principal();
-        scanf("%d", &operacao_principal);
+        operacao_principal = tela_principal();
 
         if (operacao_principal == 1)
         {
-            tela_cardapio();
+            printf("\nO que deseja fazer?\n1 - ver cardápio\n2 - adicionar produto\n");
+            scanf("%d", &auxiliar);
+
+            if (auxiliar == 1)
+            {
+                operacao_secundaria = tela_cardapio();
+                
+                if (operacao_secundaria != 0)
+                {
+                    tela_produto();
+                }
+
+            }
+            else if (auxiliar == 2)
+            {
+                tela_adicionar_produto();
+            }
+            
         }
         else if (operacao_principal == 2)
         {
-            tela_fazer_pedido();
+            tela_informacoes_pedido();
         }
         else if (operacao_principal == 3)
         {
@@ -57,8 +90,9 @@ int main(void)
 }
 
 //Funções
-void tela_principal(void)
+int tela_principal(void)
 {
+    int operacao = 0;
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -71,6 +105,167 @@ void tela_principal(void)
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    scanf("%d", &operacao);
+    return operacao;
+}
+
+int tela_cardapio(void)
+{
+    int operacao = 0;
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Cardápio                                   ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   1. Clássico Burguer ................................. R$ 18,90         ///\n");
+    printf("///   2. Cheddar Bacon .................................... R$ 22,50         ///\n");
+    printf("///   3. Duplo Smash ...................................... R$ 25,00         ///\n");
+    printf("///   4. Veggie Burguer ................................... R$ 20,00         ///\n");
+    printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
+    printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Digite o número do produto que deseja ver, ou 0 para sair              ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    scanf("%d", &operacao);
+    return operacao;
+}
+
+void tela_produto(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Detalhes do Pedido                             ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Item: Duplo Smash                                                      ///\n");
+    printf("///   Preço: R$ 25,00                                                        ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Ingredientes:                                                          ///\n");
+    printf("///     - Dois hambúrgueres smash 100g cada                                  ///\n");
+    printf("///     - Queijo cheddar derretido                                           ///\n");
+    printf("///     - Bacon crocante                                                     ///\n");
+    printf("///     - Cebola caramelizada                                                ///\n");
+    printf("///     - Picles                                                             ///\n");
+    printf("///     - Molho especial da casa                                             ///\n");
+    printf("///     - Pão brioche levemente tostado                                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_adicionar_produto(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                        Adicionar Novo Hambúrguer                         ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Para cadastrar um novo hambúrguer, informe:                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Nome do hambúrguer:                                                  ///\n");
+    printf("///   - Preço (em R$):                                                       ///\n");
+    printf("///   - Ingredientes (separe por vírgulas):                                  ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Cada um dos detalhes deverá ser enviado numa mensagem separada       ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_informacoes_pedido(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                        informações do seu pedido                         ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Para realizar seu pedido, informe:                                     ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Endereço de entrega (rua, número, bairro, complemento).              ///\n");
+    printf("///   - Número(s) do(s) item(ns) desejado(s) do cardápio.                    ///\n");
+    printf("///   - Nome do cliente para registrar o pedido.                             ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_endereco(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///          Preencha os dados a seguir sobre o endereço da entrega          ///\n");
+    printf("///                                                                          ///\n");
+    printf("///    Bairro:                                                               ///\n");
+    printf("///    Rua:                                                                  ///\n");
+    printf("///    Número:                                                               ///\n");
+    printf("///    Complemento:                                                          ///\n");
+    printf("///                                                                          ///\n"); 
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_informar_item(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                 Digite o número do item que deseja                       ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   1. Clássico Burguer ................................. R$ 18,90         ///\n");
+    printf("///   2. Cheddar Bacon .................................... R$ 22,50         ///\n");
+    printf("///   3. Duplo Smash ...................................... R$ 25,00         ///\n");
+    printf("///   4. Veggie Burguer ................................... R$ 20,00         ///\n");
+    printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
+    printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_dados_cliente(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                        Digite os Dados pessoais                          ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Nome:                                                                  ///\n");
+    printf("///   CPF:                                                                   ///\n");
+    printf("///   Número de telefone:                                                    ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_historico(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                     Registro de pedidos do usuário                       ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                               Em breve...                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
 
@@ -111,60 +306,6 @@ void tela_equipe(void)
     printf("///             Git: https://github.com/Juan-Vyctor                          ///\n");
     printf("///                                                                          ///\n");
     printf("///      Link do Projeto: https://github.com/Juan-Vyctor/Sig-Burger.git      ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void tela_cardapio(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                               Cardápio                                   ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   1. Clássico Burguer ................................. R$ 18,90         ///\n");
-    printf("///   2. Cheddar Bacon .................................... R$ 22,50         ///\n");
-    printf("///   3. Duplo Smash ...................................... R$ 25,00         ///\n");
-    printf("///   4. Veggie Burguer ................................... R$ 20,00         ///\n");
-    printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
-    printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void tela_fazer_pedido(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                            Faça seu pedido                               ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   Para realizar seu pedido, informe:                                     ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   - Endereço de entrega (rua, número, bairro, complemento).              ///\n");
-    printf("///   - Número(s) do(s) item(ns) desejado(s) do cardápio.                    ///\n");
-    printf("///   - Nome do cliente para registrar o pedido.                             ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void tela_historico(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                     Registro de pedidos do usuário                       ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                               Em breve...                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
