@@ -10,6 +10,7 @@ void tela_cadastrar_cliente(void);
 void tela_listar_clientes(void);
 void tela_visualizar_cliente(void);
 void tela_cadastrar_endereco(void);
+void tela_visualizar_endereco(void);
 
 // funções de produtos
 int tela_cardapio(void);
@@ -194,6 +195,20 @@ void tela_cadastrar_endereco(void)
     printf("///    Número:                                                               ///\n");
     printf("///    Complemento:                                                          ///\n");
     printf("///                                                                          ///\n"); 
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_visualizar_endereco(void)
+{
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///   Endereço salvo no momento:                                             ///\n");
+    printf("///       Rua das Flores, 123                                                ///\n");
+    printf("///       Bairro: Centro                                                     ///\n");
+    printf("///       Cidade: São Paulo - SP                                             ///\n");
+    printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
+    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
