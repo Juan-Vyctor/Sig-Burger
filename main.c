@@ -7,6 +7,7 @@ int tela_principal(void);
 
 // funções de cliente
 void tela_cadastrar_cliente(void);
+void tela_visualizar_cliente(void);
 void tela_cadastrar_endereco(void);
 
 // funções de produtos
@@ -129,6 +130,29 @@ void tela_cadastrar_cliente(void)
     printf("///                                                                          ///\n");
     printf("///   - Senha:                                                               ///\n");
     printf("///   - Confirmar senha:                                                     ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_visualizar_cliente(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                          Dados do Cliente                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Nome completo:   João da Silva Souza                                   ///\n");
+    printf("///   Telefone:        (11) 98765-4321                                       ///\n");
+    printf("///   CPF:             123.456.789-00                                        ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Endereço:                                                              ///\n");
+    printf("///       Rua das Flores, 123                                                ///\n");
+    printf("///       Bairro: Centro                                                     ///\n");
+    printf("///       Cidade: São Paulo - SP                                             ///\n");
+    printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
