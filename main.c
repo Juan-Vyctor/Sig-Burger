@@ -124,6 +124,7 @@ int tela_principal(void)
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     scanf("%d", &operacao);
+    getchar();
     return operacao;
 }
 
@@ -243,6 +244,7 @@ int tela_menu_cardapio(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     scanf("%d", &operacao);
+    getchar();
     return operacao;
 }
 
@@ -267,6 +269,7 @@ int tela_cardapio(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     scanf("%d", &operacao);
+    getchar();
     return operacao;
 }
 
