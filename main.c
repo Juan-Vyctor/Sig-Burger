@@ -7,6 +7,7 @@ int tela_principal(void);
 
 // funções de cliente
 void tela_cadastrar_cliente(void);
+void tela_listar_clientes(void);
 void tela_visualizar_cliente(void);
 void tela_cadastrar_endereco(void);
 
@@ -130,6 +131,27 @@ void tela_cadastrar_cliente(void)
     printf("///                                                                          ///\n");
     printf("///   - Senha:                                                               ///\n");
     printf("///   - Confirmar senha:                                                     ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_listar_clientes(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Lista de Clientes                              ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   1. João da Silva Souza                                                 ///\n");
+    printf("///   2. Maria Oliveira Santos                                               ///\n");
+    printf("///   3. Pedro Henrique Almeida                                              ///\n");
+    printf("///   4. Ana Clara Rodrigues                                                 ///\n");
+    printf("///   5. Lucas Pereira Costa                                                 ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Digite o número do cliente que deseja visualizar: ________              ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
