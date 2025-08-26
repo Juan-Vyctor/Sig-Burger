@@ -7,6 +7,7 @@ int tela_principal(void);
 
 // funções de cliente
 void tela_cadastrar_cliente(void);
+void tela_cadastrar_endereco(void);
 
 // funções de produtos
 int tela_cardapio(void);
@@ -15,7 +16,6 @@ void tela_adicionar_produto(void);
 
 // funções de pedido
 void tela_informacoes_pedido(void);
-void tela_endereco(void);
 void tela_informar_item(void);
 
 // funções de histórico
@@ -134,6 +134,24 @@ void tela_cadastrar_cliente(void)
     printf("\n");
 }
 
+void tela_cadastrar_endereco(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///    Agora, informe seu endereço para entregas:                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("///    Bairro:                                                               ///\n");
+    printf("///    Rua:                                                                  ///\n");
+    printf("///    Número:                                                               ///\n");
+    printf("///    Complemento:                                                          ///\n");
+    printf("///                                                                          ///\n"); 
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
 int tela_cardapio(void)
 {
     int operacao = 0;
@@ -219,24 +237,6 @@ void tela_informacoes_pedido(void)
     printf("///   - Número(s) do(s) item(ns) desejado(s) do cardápio.                    ///\n");
     printf("///   - Nome do cliente para registrar o pedido.                             ///\n");
     printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void tela_endereco(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///          Preencha os dados a seguir sobre o endereço da entrega          ///\n");
-    printf("///                                                                          ///\n");
-    printf("///    Bairro:                                                               ///\n");
-    printf("///    Rua:                                                                  ///\n");
-    printf("///    Número:                                                               ///\n");
-    printf("///    Complemento:                                                          ///\n");
-    printf("///                                                                          ///\n"); 
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
