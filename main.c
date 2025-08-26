@@ -13,6 +13,7 @@ void tela_cadastrar_endereco(void);
 void tela_visualizar_endereco(void);
 
 // funções de produtos
+int tela_menu_cardapio(void);
 int tela_cardapio(void);
 void tela_produto(void);
 void tela_adicionar_produto(void);
@@ -44,8 +45,7 @@ int main(void)
 
         if (operacao_principal == 1)
         {
-            printf("\nO que deseja fazer?\n1 - ver cardápio\n2 - adicionar produto\n");
-            scanf("%d", &auxiliar);
+            auxiliar = tela_menu_cardapio();
 
             if (auxiliar == 1)
             {
@@ -57,32 +57,43 @@ int main(void)
                 }
 
             }
+
             else if (auxiliar == 2)
+            {
+                tela_informacoes_pedido();
+            }
+
+            else if (auxiliar == 3)
             {
                 tela_adicionar_produto();
             }
-            
-        }
+                }
+
         else if (operacao_principal == 2)
         {
             tela_informacoes_pedido();
         }
+
         else if (operacao_principal == 3)
         {
             tela_historico();
         } 
+
         else if (operacao_principal == 4)
         {
             tela_sobre();
         }
+
         else if (operacao_principal == 5)
         {
             tela_equipe();
         }
+
         else if (operacao_principal != 0)
         {
             printf("Está opção é inválida, retornando ao menu inicial...");
         }
+
         else
         {
             tela_confirmacao();
@@ -212,6 +223,27 @@ void tela_visualizar_endereco(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+}
+
+int tela_menu_cardapio(void)
+{
+    int operacao = 0;
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                          Menu do Cardápio                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   1. Ver cardápio                                                        ///\n");
+    printf("///   2. Fazer pedido                                                        ///\n");
+    printf("///   3. Adicionar um novo produto                                           ///\n");
+    printf("///   0. Voltar                                                              ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    scanf("%d", &operacao);
+    return operacao;
 }
 
 int tela_cardapio(void)
