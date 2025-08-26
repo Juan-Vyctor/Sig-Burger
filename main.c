@@ -5,6 +5,9 @@
 
 int tela_principal(void);
 
+// funções de cliente
+void tela_cadastrar_cliente(void);
+
 // funções de produtos
 int tela_cardapio(void);
 void tela_produto(void);
@@ -14,7 +17,6 @@ void tela_adicionar_produto(void);
 void tela_informacoes_pedido(void);
 void tela_endereco(void);
 void tela_informar_item(void);
-void tela_dados_cliente(void);
 
 // funções de histórico
 void tela_historico(void);
@@ -108,6 +110,28 @@ int tela_principal(void)
     printf("\n");
     scanf("%d", &operacao);
     return operacao;
+}
+
+void tela_cadastrar_cliente(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Cadastro de Cliente                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Para se cadastrar, informe:                                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Nome completo:                                                       ///\n");
+    printf("///   - Telefone:                                                            ///\n");
+    printf("///   - CPF:                                                                 ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   - Senha:                                                               ///\n");
+    printf("///   - Confirmar senha:                                                     ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
 
 int tela_cardapio(void)
@@ -232,23 +256,6 @@ void tela_informar_item(void)
     printf("///   4. Veggie Burguer ................................... R$ 20,00         ///\n");
     printf("///   5. Frango Crispy .................................... R$ 21,50         ///\n");
     printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void tela_dados_cliente(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                        Digite os Dados pessoais                          ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   Nome:                                                                  ///\n");
-    printf("///   CPF:                                                                   ///\n");
-    printf("///   Número de telefone:                                                    ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
