@@ -152,7 +152,7 @@ void tela_listar_clientes(void)
     printf("///   4. Ana Clara Rodrigues                                                 ///\n");
     printf("///   5. Lucas Pereira Costa                                                 ///\n");
     printf("///                                                                          ///\n");
-    printf("///   Digite o número do cliente que deseja visualizar: ________              ///\n");
+    printf("///   Digite o número do cliente que deseja visualizar:                      ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
