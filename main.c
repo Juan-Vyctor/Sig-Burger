@@ -17,6 +17,7 @@ void tela_visualizar_endereco(void);
 void tela_menu_funcionario(void);
 void tela_cadastrar_funcionario(void);
 void tela_listar_funcionarios(void);
+void tela_visualizar_funcionario(void);
 
 // funções de produtos
 int tela_menu_cardapio(void);
@@ -304,6 +305,25 @@ void tela_listar_funcionarios(void)
     printf("///    Digite o número do funcionário que deseja visualizar:                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_visualizar_funcionario(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                       Dados do Funcionário                               ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Nome completo:   Maria das Graças                                      ///\n");
+    printf("///   Telefone:        (11) 11111-1111                                       ///\n");
+    printf("///   CPF:             111.111.111-11                                        ///\n");
+    printf("///                                                                          ///\n");
+    printf("///   Cargo: Atendente                                                       ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
 
