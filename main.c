@@ -6,6 +6,7 @@
 int tela_principal(void);
 
 // funções de cliente
+void tela_menu_clientes(void);
 void tela_cadastrar_cliente(void);
 void tela_listar_clientes(void);
 void tela_visualizar_cliente(void);
@@ -126,6 +127,25 @@ int tela_principal(void)
     scanf("%d", &operacao);
     getchar();
     return operacao;
+}
+
+void tela_menu_clientes(void) 
+{
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                            Menu Clientes                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   1. Cadastrar Clientes                                                 ///\n");
+    printf("///   2. Listar Clientes                                                    ///\n");
+    printf("///   3. Visualizar Clientes                                                ///\n");
+    printf("///   4. Cadastrar Endereço                                                 ///\n");
+    printf("///   5. Visualizar Endereço                                                ///\n");
+    printf("///   0. Voltar                                                             ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
 
 void tela_cadastrar_cliente(void)
