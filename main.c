@@ -16,6 +16,7 @@ void tela_visualizar_endereco(void);
 // funções funcionários
 void tela_menu_funcionario(void);
 void tela_cadastrar_funcionario(void);
+void tela_listar_funcionarios(void);
 
 // funções de produtos
 int tela_menu_cardapio(void);
@@ -288,6 +289,22 @@ void tela_cadastrar_funcionario(void)
     printf("///   - Cargo:                                                              ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+}
+void tela_listar_funcionarios(void)
+{
+    system("clear")
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                       Lista dos Funcionários                            ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   1. Maria das Graças                                                   ///\n");
+    printf("///                                                                         ///\n");
+    printf("///    Digite o número do funcionário que deseja visualizar:                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
 
 int tela_menu_cardapio(void)
