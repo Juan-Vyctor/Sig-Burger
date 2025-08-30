@@ -13,6 +13,9 @@ void tela_visualizar_cliente(void);
 void tela_cadastrar_endereco(void);
 void tela_visualizar_endereco(void);
 
+// funções funcionários
+void tela_menu_funcionario(void);
+
 // funções de produtos
 int tela_menu_cardapio(void);
 int tela_cardapio(void);
@@ -117,9 +120,10 @@ int tela_principal(void)
     printf("///            1. Cardápio                                                  ///\n");
     printf("///            2. Pedido                                                    ///\n");
     printf("///            3. Histórico                                                 ///\n");
-    printf("///            4. Menu de clientes                                          ///\n");
-    printf("///            5. Sobre o Sig-Burguer                                       ///\n");
-    printf("///            6. Sobre a Equipe                                            ///\n");
+    printf("///            4. Menu Clientes                                             ///\n");
+    printf("///            5. Menu Funcionários                                         ///\n");
+    printf("///            6. Sobre o Sig-Burguer                                       ///\n");
+    printf("///            7. Sobre a Equipe                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -131,6 +135,7 @@ int tela_principal(void)
 
 void tela_menu_clientes(void) 
 {
+    system("clear")
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -243,6 +248,24 @@ void tela_visualizar_endereco(void)
     printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void tela_menu_funcionario(void)
+{
+    system("clear")
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                          Menu Funcionários                              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   1. Cadastrar Funcionário                                              ///\n");
+    printf("///   2. Listar Funcionários                                                ///\n");
+    printf("///   3. Visualizar Funcionário                                             ///\n");
+    printf("///   0. Voltar                                                             ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
 
