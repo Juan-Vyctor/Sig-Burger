@@ -15,6 +15,7 @@ void tela_visualizar_endereco(void);
 
 // funções funcionários
 void tela_menu_funcionario(void);
+void tela_cadastrar_funcionario(void);
 
 // funções de produtos
 int tela_menu_cardapio(void);
@@ -267,6 +268,26 @@ void tela_menu_funcionario(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+}
+
+void tela_cadastrar_funcionario(void)
+{
+    system("clear")
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                        Cadastrar Funcionários                           ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   Para cadastrar o funcionário, informe:                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   - Nome completo:                                                      ///\n");
+    printf("///   - Telefone:                                                           ///\n");
+    printf("///   - CPF:                                                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   - Cargo:                                                              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
 }
 
 int tela_menu_cardapio(void)
