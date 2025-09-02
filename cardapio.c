@@ -12,12 +12,13 @@ void modulo_cardapio(void) {
         {
             tela_produto();
         }
-        
     }
+
     else if (operacao_principal == 2)
     {
         tela_cardapio();
     }
+
     else if (operacao_principal == 3) 
     {
         tela_adicionar_produto();
