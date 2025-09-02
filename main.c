@@ -11,7 +11,7 @@ void tela_historico(void);
 int tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
-void tela_confirmacao(void);
+int tela_confirmacao(void);
 void tela_saida(void);
 
 //progama principal
@@ -55,7 +55,7 @@ int main(void)
 
         else
         {
-            tela_confirmacao();
+            operacao_principal = tela_confirmacao();
         }
 
     } while (operacao_principal != 0);
@@ -145,8 +145,9 @@ void tela_equipe(void)
     printf("\n");
 }
 
-void tela_confirmacao(void)
+int tela_confirmacao(void)
 {
+    int operacao = 0;
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -158,10 +159,14 @@ void tela_confirmacao(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    getchar();
+    return operacao;
 }
 
 void tela_saida(void)
 {
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
