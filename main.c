@@ -35,15 +35,20 @@ int main(void)
 
         else if (operacao_principal == 3)
         {
-            tela_historico();
-        } 
+            modulo_funcionario();
+        }
 
         else if (operacao_principal == 4)
+        {
+            tela_historico();
+        }
+
+        else if (operacao_principal == 5)
         {
             tela_sobre();
         }
 
-        else if (operacao_principal == 5)
+        else if (operacao_principal == 6)
         {
             tela_equipe();
         }
