@@ -2,8 +2,28 @@
 #include <stdlib.h>
 #include "modulos.h"
 
-void tela_menu_funcionario(void)
+void modulo_funcionario(void)
 {
+    int operacao_principal = tela_menu_funcionario();
+    if (operacao_principal == 1)
+    {
+        tela_cadastrar_funcionario();
+    }
+    
+    else if (operacao_principal == 2)
+    {
+        tela_listar_funcionarios();
+    }
+    
+    else if (operacao_principal == 3)
+    {
+        tela_visualizar_funcionario();
+    }
+}
+
+int tela_menu_funcionario(void)
+{
+    int operacao = 0;
     system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -18,6 +38,9 @@ void tela_menu_funcionario(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    getchar();
+    return operacao;
 }
 
 void tela_cadastrar_funcionario(void)
