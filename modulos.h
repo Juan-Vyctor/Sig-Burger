@@ -20,4 +20,8 @@
     void tela_cadastrar_funcionario(void);
     void tela_listar_funcionarios(void);
     void tela_visualizar_funcionario(void);
+
+    // Funções do módulo Pedido
+    void tela_informacoes_pedido(void);
+    void tela_informar_item(void);
 #endif
