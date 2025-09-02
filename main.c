@@ -138,7 +138,7 @@ int tela_principal(void)
 
 void tela_menu_clientes(void) 
 {
-    system("clear")
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -256,7 +256,7 @@ void tela_visualizar_endereco(void)
 
 void tela_menu_funcionario(void)
 {
-    system("clear")
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -274,7 +274,7 @@ void tela_menu_funcionario(void)
 
 void tela_cadastrar_funcionario(void)
 {
-    system("clear")
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -293,7 +293,7 @@ void tela_cadastrar_funcionario(void)
 }
 void tela_listar_funcionarios(void)
 {
-    system("clear")
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
