@@ -2,6 +2,21 @@
 #include <stdlib.h>
 #include "modulos.h"
 
+void modulo_cardapio(void) {
+    int operacao = tela_menu_cardapio();
+
+    if (operacao == 1)
+    {
+        tela_cardapio();
+    } else if (operacao == 2)
+    {
+        tela_cardapio();
+    } else if (operacao == 3) 
+    {
+        tela_adicionar_produto();
+    }
+}
+
 int tela_menu_cardapio(void)
 {
     int operacao = 0;
