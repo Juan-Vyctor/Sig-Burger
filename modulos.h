@@ -2,6 +2,7 @@
     #define MODULOS_H
 
     // Funções do módulo de Cardápio/Produtos
+    void modulo_cardapio(void);
     int tela_menu_cardapio(void);
     int tela_cardapio(void);
     void tela_produto(void);
