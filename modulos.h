@@ -14,4 +14,10 @@
     void tela_visualizar_cliente(void);
     void tela_cadastrar_endereco(void);
     void tela_visualizar_endereco(void);
+
+    // Funções do módulo Funcionario
+    void tela_menu_funcionario(void);
+    void tela_cadastrar_funcionario(void);
+    void tela_listar_funcionarios(void);
+    void tela_visualizar_funcionario(void);
 #endif
