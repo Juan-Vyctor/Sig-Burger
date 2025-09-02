@@ -3,15 +3,22 @@
 #include "modulos.h"
 
 void modulo_cardapio(void) {
-    int operacao = tela_menu_cardapio();
+    int operacao_principal = tela_menu_cardapio();
 
-    if (operacao == 1)
+    if (operacao_principal == 1)
+    {
+        int operacao_secundaria = tela_cardapio();
+        if (operacao_secundaria != 0)
+        {
+            tela_produto();
+        }
+        
+    }
+    else if (operacao_principal == 2)
     {
         tela_cardapio();
-    } else if (operacao == 2)
-    {
-        tela_cardapio();
-    } else if (operacao == 3) 
+    }
+    else if (operacao_principal == 3) 
     {
         tela_adicionar_produto();
     }
