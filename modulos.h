@@ -1,0 +1,10 @@
+#ifndef MODULOS_H
+    #define MODULOS_H
+
+    // Funções do módulo de Cardápio/Produtos
+    int tela_menu_cardapio(void);
+    int tela_cardapio(void);
+    void tela_produto(void);
+    void tela_adicionar_produto(void);
+
+#endif
