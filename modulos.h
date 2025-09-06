@@ -29,4 +29,11 @@
 
     //Funções do módulo Histórico
     void tela_historico(void);
+
+    // Funções gerais
+    int tela_principal(void);
+    void tela_sobre(void);
+    void tela_equipe(void);
+    int tela_confirmacao(void);
+    void tela_saida(void);
 #endif
