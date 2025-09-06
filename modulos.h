@@ -9,7 +9,8 @@
     void tela_adicionar_produto(void);
 
     // Funções do módulo de Cliente
-    void tela_menu_clientes(void);
+    void modulo_cliente(void);
+    int tela_menu_clientes(void);
     void tela_cadastrar_cliente(void);
     void tela_listar_clientes(void);
     void tela_visualizar_cliente(void);

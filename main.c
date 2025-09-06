@@ -18,7 +18,7 @@ int main(void)
 
         else if (operacao_principal == 2)
         {
-            tela_menu_clientes();
+            modulo_cliente();
         }
 
         else if (operacao_principal == 3)
