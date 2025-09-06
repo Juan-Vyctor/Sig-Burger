@@ -4,9 +4,6 @@
 
 //assinatura das funções
 
-// funções de histórico
-void tela_historico(void);
-
 // funções gerais
 int tela_principal(void);
 void tela_sobre(void);
@@ -90,21 +87,6 @@ int tela_principal(void)
     scanf("%d", &operacao);
     getchar();
     return operacao;
-}
-
-void tela_historico(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                     Registro de pedidos do usuário                       ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                               Em breve...                                ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
 }
 
 void tela_sobre(void)

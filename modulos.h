@@ -26,4 +26,7 @@
     // Funções do módulo Pedido
     void tela_informacoes_pedido(void);
     void tela_informar_item(void);
+
+    //Funções do módulo Histórico
+    void tela_historico(void);
 #endif
