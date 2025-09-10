@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "modulos.h"
+#include "./include/cardapio.h"
+#include "./include/cliente.h"
+#include "./include/funcionario.h"
+#include "./include/geral.h"
+#include "./include/historico.h"
+#include "./include/pedido.h"
 
 //progama principal
 int main(void)
