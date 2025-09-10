@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "modulos.h"
+#include "./include/geral.h"
 
 int tela_principal(void)
 {
