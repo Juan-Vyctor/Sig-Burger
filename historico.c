@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "modulos.h"
+#include "./include/historico.h"
 
 void tela_historico(void)
 {
