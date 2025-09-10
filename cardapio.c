@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "modulos.h"
+#include "./include/cardapio.h"
 
 void modulo_cardapio(void) {
     int operacao_principal = tela_menu_cardapio();
