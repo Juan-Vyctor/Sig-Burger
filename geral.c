@@ -69,6 +69,7 @@ void tela_equipe(void)
 int tela_confirmacao(void)
 {
     int operacao = 0;
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");

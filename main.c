@@ -48,7 +48,8 @@ int main(void)
 
         else if (operacao_principal != 0)
         {
-            printf("Está opção é inválida, retornando ao menu inicial...");
+            system("clear");
+            printf("Está opção é inválida, retornando ao menu inicial...\n");
         }
 
         else
