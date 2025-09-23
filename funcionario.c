@@ -4,21 +4,24 @@
 
 void modulo_funcionario(void)
 {
-    int operacao_principal = tela_menu_funcionario();
-    if (operacao_principal == 1)
-    {
-        tela_cadastrar_funcionario();
-    }
-    
-    else if (operacao_principal == 2)
-    {
-        tela_listar_funcionarios();
-    }
-    
-    else if (operacao_principal == 3)
-    {
-        tela_visualizar_funcionario();
-    }
+    int operacao_principal;
+    do{
+        operacao_principal = tela_menu_funcionario();
+        if (operacao_principal == 1)
+        {
+            tela_cadastrar_funcionario();
+        }
+        
+        else if (operacao_principal == 2)
+        {
+            tela_listar_funcionarios();
+        }
+        
+        else if (operacao_principal == 3)
+        {
+            tela_visualizar_funcionario();
+        }
+    } while (operacao_principal != 0);
 }
 
 int tela_menu_funcionario(void)
@@ -61,6 +64,7 @@ void tela_cadastrar_funcionario(void)
     printf("///   - Cargo:                                                              ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
 
 void tela_listar_funcionarios(void)
