@@ -2,31 +2,35 @@
 #include <stdlib.h>
 #include "./include/cliente.h"
 
-void modulo_cliente(void)
-{
-    int operacao_principal = tela_menu_clientes();
-    if (operacao_principal == 1)
-    {
-        tela_cadastrar_cliente();
-    }
-    
-    else if (operacao_principal == 2)
-    {
-        tela_listar_clientes();
-    }
-    
-    else if (operacao_principal == 3)
-    {
-        tela_visualizar_cliente();
-    }
-    else if (operacao_principal == 4)
-    {
-        tela_cadastrar_endereco();
-    }
-    else if (operacao_principal == 5)
-    {
-        tela_visualizar_endereco();
-    }
+void modulo_cliente(void){
+    int operacao_principal;
+    do{
+        operacao_principal = tela_menu_clientes();
+        
+        if (operacao_principal == 1)
+        {
+            tela_cadastrar_cliente();
+        }
+        
+        else if (operacao_principal == 2)
+        {
+            tela_listar_clientes();
+        }
+        
+        else if (operacao_principal == 3)
+        {
+            tela_visualizar_cliente();
+        }
+        else if (operacao_principal == 4)
+        {
+            tela_cadastrar_endereco();
+        }
+        else if (operacao_principal == 5)
+        {
+            tela_visualizar_endereco();
+        }
+
+    } while (operacao_principal != 0);
 }
 
 int tela_menu_clientes(void)
