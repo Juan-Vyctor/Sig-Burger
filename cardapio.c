@@ -3,26 +3,30 @@
 #include "./include/cardapio.h"
 
 void modulo_cardapio(void) {
-    int operacao_principal = tela_menu_cardapio();
+    int operacao_principal;
+    do {
+        operacao_principal = tela_menu_cardapio();
 
-    if (operacao_principal == 1)
-    {
-        int operacao_secundaria = tela_cardapio();
-        if (operacao_secundaria != 0)
+        if (operacao_principal == 1)
         {
-            tela_produto();
+            int operacao_secundaria = tela_cardapio();
+            if (operacao_secundaria != 0)
+            {
+                tela_produto();
+            }
         }
-    }
 
-    else if (operacao_principal == 2)
-    {
-        tela_cardapio();
-    }
+        else if (operacao_principal == 2)
+        {
+            tela_cardapio();
+        }
 
-    else if (operacao_principal == 3) 
-    {
-        tela_adicionar_produto();
-    }
+        else if (operacao_principal == 3) 
+        {
+            tela_adicionar_produto();
+        }
+
+    } while (operacao_principal != 0);
 }
 
 int tela_menu_cardapio(void)
@@ -65,6 +69,7 @@ int tela_cardapio(void)
     printf("///   6. Super Burguer (artesanal 200g) ................... R$ 27,90         ///\n");
     printf("///                                                                          ///\n");
     printf("///   Digite o número do produto que deseja ver, ou 0 para sair              ///\n");
+    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     scanf("%d", &operacao);
@@ -72,8 +77,9 @@ int tela_cardapio(void)
     return operacao;
 }
 
-void tela_produto(void)
+int tela_produto(void)
 {
+    int operacao = 0;
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -93,12 +99,18 @@ void tela_produto(void)
     printf("///     - Molho especial da casa                                             ///\n");
     printf("///     - Pão brioche levemente tostado                                      ///\n");
     printf("///                                                                          ///\n");
+    printf("///   Digite o número 0 para sair                                            ///\n");
+    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    getchar();
+    return operacao;
 }
 
-void tela_adicionar_produto(void)
+int tela_adicionar_produto(void)
 {
+    int operacao = 0;
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -114,6 +126,12 @@ void tela_adicionar_produto(void)
     printf("///                                                                          ///\n");
     printf("///   - Cada um dos detalhes deverá ser enviado numa mensagem separada       ///\n");
     printf("///                                                                          ///\n");
+    printf("///   Digite o número 0 para sair                                            ///\n");
+    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%d", &operacao);
+    getchar();
+    return operacao;
 }
+    
