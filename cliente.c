@@ -59,6 +59,12 @@ int tela_menu_clientes(void)
 
 void tela_cadastrar_cliente(void)
 {
+    
+    char nome[51];
+    char numero[12]; 
+    char cpf[12];
+
+
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -77,6 +83,19 @@ void tela_cadastrar_cliente(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    printf("Digite seu Nome completo: ");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+    getchar();
+    printf("Digite seu Celular (apenas números): ");
+    scanf("%[0-9]", numero);
+    getchar();
+    printf("Digite seu cpf (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("cliente cadastrado!\n");
+    printf("Digite enter para continuar!");
+    getchar();
 }
 
 void tela_listar_clientes(void)
