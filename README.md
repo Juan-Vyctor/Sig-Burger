@@ -51,7 +51,7 @@ Antes de começar, instale no seu computador:
 
 1. **Abrir o projeto no VS Code**
 
-   * Vá em **File > Open Folder** e selecione a pasta onde está o arquivo `sig_bar`.
+   * Vá em **File > Open Folder** e selecione a pasta onde está o arquivo `sig_burger`.
 
 2. **Abrir o Terminal no VS Code**
 
