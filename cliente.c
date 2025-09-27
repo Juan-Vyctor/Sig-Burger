@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "./include/cliente.h"
+//#include "./include/validacoes.h"
 
 void modulo_cliente(void){
     int operacao_principal;
@@ -59,7 +60,7 @@ int tela_menu_clientes(void)
 
 void tela_cadastrar_cliente(void)
 {
-    
+    FILE *arq_cliente;
     char nome[51];
     char numero[12]; 
     char cpf[12];
@@ -96,6 +97,19 @@ void tela_cadastrar_cliente(void)
     printf("cliente cadastrado!\n");
     printf("Digite enter para continuar!");
     getchar();
+
+    arq_cliente = fopen("cliente.csv", "at");
+    if (arq_cliente == NULL){
+        printf("erro na criaçao do arquivo!\n");
+        printf("Digite enter para continuar\n");
+        getchar();
+
+        return;}
+    
+    fprintf(arq_cliente, "%s;", nome);
+    fprintf(arq_cliente, "%s;", numero);
+    fprintf(arq_cliente, "%s;", cpf);
+
 }
 
 void tela_listar_clientes(void)
