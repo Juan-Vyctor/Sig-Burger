@@ -62,7 +62,7 @@ Antes de começar, instale no seu computador:
    No terminal, execute:
 
    ```bash
-   gcc main.c cardapio.c historico.c funcionario.c geral.c cliente.c -o sig_burger
+   gcc main.c cardapio.c historico.c funcionario.c geral.c cliente.c validacoes.c -o sig_burger
    ```
 
    Isso gera o executável `sig_burger`.
