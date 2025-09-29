@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "./include/cliente.h"
 //#include "./include/validacoes.h"
 
@@ -79,26 +80,23 @@ void tela_cadastrar_cliente(void)
     printf("///   - Telefone:                                                            ///\n");
     printf("///   - CPF:                                                                 ///\n");
     printf("///                                                                          ///\n");
-    printf("///   - Senha:                                                               ///\n");
-    printf("///   - Confirmar senha:                                                     ///\n");
-    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
     printf("Digite seu Nome completo: ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
     getchar();
-    printf("Digite seu Celular (apenas números): ");
-    scanf("%[0-9]", numero);
-    getchar();
     printf("Digite seu cpf (apenas números): ");
     scanf("%[0-9]", cpf);
+    getchar();
+    printf("Digite seu Celular (apenas números): ");
+    scanf("%[0-9]", numero);
     getchar();
     printf("cliente cadastrado!\n");
     printf("Digite enter para continuar!");
     getchar();
 
-    arq_cliente = fopen("cliente.csv", "at");
+    arq_cliente = fopen("arq_cliente.csv", "at");
     if (arq_cliente == NULL){
         printf("erro na criaçao do arquivo!\n");
         printf("Digite enter para continuar\n");
@@ -107,8 +105,8 @@ void tela_cadastrar_cliente(void)
         return;}
     
     fprintf(arq_cliente, "%s;", nome);
-    fprintf(arq_cliente, "%s;", numero);
     fprintf(arq_cliente, "%s;", cpf);
+    fprintf(arq_cliente, "%s;", numero);
 
 }
 
@@ -131,29 +129,59 @@ void tela_listar_clientes(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 void tela_visualizar_cliente(void)
 {
+    FILE *arq_cliente;
+    char nome[51];
+    char numero[12]; 
+    char cpf[12];
+    char cpf_lido[12];
+
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
-    printf("///                          Dados do Cliente                                ///\n");
+    printf("///                           Buscar Cliente                                 ///\n");
     printf("///                                                                          ///\n");
-    printf("///   Nome completo:   João da Silva Souza                                   ///\n");
-    printf("///   Telefone:        (11) 98765-4321                                       ///\n");
-    printf("///   CPF:             123.456.789-00                                        ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   Endereço:                                                              ///\n");
-    printf("///       Rua das Flores, 123                                                ///\n");
-    printf("///       Bairro: Centro                                                     ///\n");
-    printf("///       Cidade: São Paulo - SP                                             ///\n");
-    printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
+    printf("/// Digite o CPF do cliente (apenas números):                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    scanf("%s", cpf_lido);
+    getchar();
+
+    arq_cliente = fopen("arq_cliente.csv", "r");
+
+    if (arq_cliente == NULL) {
+        printf("Erro na criacao do arquivo\n");
+        getchar();
+        return;
+    }
+
+    while (!feof(arq_cliente)) {
+        fscanf(arq_cliente, "%[^;]", nome);
+        fgetc(arq_cliente);
+        fscanf(arq_cliente, "%[^;]", cpf);
+        fgetc(arq_cliente);
+        fscanf(arq_cliente, "%[^;\n]", numero);
+        fgetc(arq_cliente);
+    
+
+        if (strcmp(cpf, cpf_lido) == 0) {
+            printf("Cliente encontrado\n");
+            printf("Nome: %s\n", nome);
+            printf("CPF: %s\n", cpf);
+            printf("Telefone: %s\n", numero);
+            getchar();
+            fclose(arq_cliente);
+            return;
+        }
+    }
 }
 
 void tela_cadastrar_endereco(void)
@@ -172,6 +200,7 @@ void tela_cadastrar_endereco(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 void tela_visualizar_endereco(void)
@@ -186,4 +215,5 @@ void tela_visualizar_endereco(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
