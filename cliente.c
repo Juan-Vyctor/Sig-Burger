@@ -13,23 +13,21 @@ void modulo_cliente(void){
         {
             tela_cadastrar_cliente();
         }
-        
         else if (operacao_principal == 2)
         {
-            tela_listar_clientes();
-        }
-        
+            tela_visualizar_cliente();
+        } 
         else if (operacao_principal == 3)
         {
-            tela_visualizar_cliente();
+            tela_atualizar_cliente();
         }
         else if (operacao_principal == 4)
         {
-            tela_cadastrar_endereco();
+            tela_deletar_cliente();
         }
         else if (operacao_principal == 5)
         {
-            tela_visualizar_endereco();
+            tela_listar_clientes();
         }
 
     } while (operacao_principal != 0);
@@ -46,10 +44,10 @@ int tela_menu_clientes(void)
     printf("///                            Menu Clientes                                ///\n");
     printf("///                                                                         ///\n");
     printf("///   1. Cadastrar Clientes                                                 ///\n");
-    printf("///   2. Listar Clientes                                                    ///\n");
-    printf("///   3. Visualizar Clientes                                                ///\n");
-    printf("///   4. Cadastrar Endereço                                                 ///\n");
-    printf("///   5. Visualizar Endereço                                                ///\n");
+    printf("///   2. Visualizar Clientes                                                ///\n");
+    printf("///   3. Atualizar Clientes                                                 ///\n");
+    printf("///   4. Deletar Clientes                                                   ///\n");
+    printf("///   5. Listar Clientes                                                    ///\n");
     printf("///   0. Voltar                                                             ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -99,7 +97,7 @@ void tela_cadastrar_cliente(void)
     arq_cliente = fopen("arq_cliente.csv", "at");
     if (arq_cliente == NULL){
         printf("erro na criaçao do arquivo!\n");
-        printf("Digite enter para continuar\n");
+        printf("Digite enter para continuar");
         getchar();
 
         return;}
@@ -184,36 +182,32 @@ void tela_visualizar_cliente(void)
     }
 }
 
-void tela_cadastrar_endereco(void)
+void tela_deletar_cliente(void)
 {
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
-    printf("///    Agora, informe seu endereço para entregas:                            ///\n");
+    printf("///                           Deletar Cliente                                ///\n");
     printf("///                                                                          ///\n");
-    printf("///    Bairro:                                                               ///\n");
-    printf("///    Rua:                                                                  ///\n");
-    printf("///    Número:                                                               ///\n");
-    printf("///    Complemento:                                                          ///\n");
+    printf("/// Digite o CPF do cliente (apenas números):                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    getchar();
 }
 
-void tela_visualizar_endereco(void)
+void tela_atualizar_cliente(void)
 {
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
-    printf("///   Endereço salvo no momento:                                             ///\n");
-    printf("///       Rua das Flores, 123                                                ///\n");
-    printf("///       Bairro: Centro                                                     ///\n");
-    printf("///       Cidade: São Paulo - SP                                             ///\n");
-    printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Atualizar Cliente                              ///\n");
+    printf("///                                                                          ///\n");
+    printf("/// Digite o CPF do cliente (apenas números):                                ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    getchar();
 }
