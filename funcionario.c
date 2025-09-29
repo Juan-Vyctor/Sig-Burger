@@ -14,12 +14,12 @@ void modulo_funcionario(void)
         
         else if (operacao_principal == 2)
         {
-            tela_listar_funcionarios();
+            tela_visualizar_funcionario();
         }
         
         else if (operacao_principal == 3)
         {
-            tela_visualizar_funcionario();
+            tela_listar_funcionarios();
         }
     } while (operacao_principal != 0);
 }
@@ -35,8 +35,8 @@ int tela_menu_funcionario(void)
     printf("///                          Menu Funcionários                              ///\n");
     printf("///                                                                         ///\n");
     printf("///   1. Cadastrar Funcionário                                              ///\n");
-    printf("///   2. Listar Funcionários                                                ///\n");
-    printf("///   3. Visualizar Funcionário                                             ///\n");
+    printf("///   2. Visualizar Funcionário                                             ///\n");
+    printf("///   3. Listar Funcionários                                                ///\n");
     printf("///   0. Voltar                                                             ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -65,23 +65,7 @@ void tela_cadastrar_funcionario(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-}
-
-void tela_listar_funcionarios(void)
-{
-    system("clear");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                       Lista dos Funcionários                            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///   1. Maria das Graças                                                   ///\n");
-    printf("///                                                                         ///\n");
-    printf("///    Digite o número do funcionário que deseja visualizar:                ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    getchar();
 }
 
 void tela_visualizar_funcionario(void)
@@ -101,4 +85,23 @@ void tela_visualizar_funcionario(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
+}
+
+void tela_listar_funcionarios(void)
+{
+    system("clear");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                       Lista dos Funcionários                            ///\n");
+    printf("///                                                                         ///\n");
+    printf("///   1. Maria das Graças                                                   ///\n");
+    printf("///                                                                         ///\n");
+    printf("///    Digite o número do funcionário que deseja visualizar:                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    getchar();
 }
