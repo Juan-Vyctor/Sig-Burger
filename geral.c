@@ -15,6 +15,7 @@ int tela_principal(void)
     printf("///            4. Histórico de pedidos                                      ///\n");
     printf("///            5. Sobre o Sig-Burguer                                       ///\n");
     printf("///            6. Sobre a Equipe                                            ///\n");
+    printf("///            7. menu endereços                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
