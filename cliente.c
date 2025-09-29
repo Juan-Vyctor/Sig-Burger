@@ -75,8 +75,8 @@ void tela_cadastrar_cliente(void)
     printf("///   Para se cadastrar, informe:                                            ///\n");
     printf("///                                                                          ///\n");
     printf("///   - Nome completo:                                                       ///\n");
-    printf("///   - Telefone:                                                            ///\n");
     printf("///   - CPF:                                                                 ///\n");
+    printf("///   - Telefone:                                                            ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -84,10 +84,10 @@ void tela_cadastrar_cliente(void)
     printf("Digite seu Nome completo: ");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
     getchar();
-    printf("Digite seu cpf (apenas números): ");
+    printf("Digite seu CPF (apenas números): ");
     scanf("%[0-9]", cpf);
     getchar();
-    printf("Digite seu Celular (apenas números): ");
+    printf("Digite seu celular (apenas números): ");
     scanf("%[0-9]", numero);
     getchar();
     printf("cliente cadastrado!\n");
