@@ -34,22 +34,22 @@ int main(void)
 
         else if (operacao_principal == 4)
         {
+            modulo_enderecos();
+        }
+        
+        else if (operacao_principal == 5)
+        {
             tela_historico();
         }
-
-        else if (operacao_principal == 5)
+        
+        else if (operacao_principal == 6)
         {
             tela_sobre();
         }
-
-        else if (operacao_principal == 6)
-        {
-            tela_equipe();
-        }
-
+        
         else if (operacao_principal == 7)
         {
-            tela_menu_enderecos();
+            tela_equipe();
         }
 
         else if (operacao_principal != 0)
