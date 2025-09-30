@@ -73,6 +73,7 @@ void tela_cadastrar_endereco(void)
 
 void tela_visualizar_endereco(void)
 {
+    system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///   Endereço salvo no momento:                                             ///\n");
