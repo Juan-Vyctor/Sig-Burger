@@ -137,6 +137,7 @@ void tela_visualizar_cliente(void)
     char numero[12]; 
     char cpf[12];
     char cpf_lido[12];
+    int encontrado = 0;
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -152,6 +153,9 @@ void tela_visualizar_cliente(void)
 
     scanf("%s", cpf_lido);
     getchar();
+    system("clear");
+    printf("CPF Digitado: %s\n", cpf_lido);
+    printf("\n");
 
     arq_cliente = fopen("arq_cliente.csv", "r");
 
@@ -171,14 +175,25 @@ void tela_visualizar_cliente(void)
     
 
         if (strcmp(cpf, cpf_lido) == 0) {
-            printf("Cliente encontrado\n");
+            printf("Cliente encontrado!\n");
             printf("Nome: %s\n", nome);
             printf("CPF: %s\n", cpf);
             printf("Telefone: %s\n", numero);
+            printf("\n");
+            printf("Tecle Enter para continuar...");
             getchar();
+            encontrado = 1;
             fclose(arq_cliente);
             return;
         }
+    }
+    fclose(arq_cliente);
+
+    if (!encontrado) {
+        printf("Cliente não encontrado!\n");
+        printf("\n");
+        printf("Pressione Enter para continuar...");
+        getchar();
     }
 }
 
