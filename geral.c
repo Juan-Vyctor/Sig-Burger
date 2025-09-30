@@ -5,6 +5,7 @@
 int tela_principal(void)
 {
     int operacao = 0;
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -42,6 +43,7 @@ void tela_sobre(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 void tela_equipe(void)
@@ -65,6 +67,7 @@ void tela_equipe(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 int tela_confirmacao(void)
