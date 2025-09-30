@@ -5,6 +5,7 @@
 int tela_principal(void)
 {
     int operacao = 0;
+    system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
@@ -12,9 +13,10 @@ int tela_principal(void)
     printf("///            1. Cardápio                                                  ///\n");
     printf("///            2. Menu Clientes                                             ///\n");
     printf("///            3. Menu Funcionários                                         ///\n");
-    printf("///            4. Histórico de pedidos                                      ///\n");
-    printf("///            5. Sobre o Sig-Burguer                                       ///\n");
-    printf("///            6. Sobre a Equipe                                            ///\n");
+    printf("///            4. Menu Endereços                                            ///\n");
+    printf("///            5. Histórico de pedidos                                      ///\n");
+    printf("///            6. Sobre o Sig-Burguer                                       ///\n");
+    printf("///            7. Sobre a Equipe                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -41,6 +43,7 @@ void tela_sobre(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 void tela_equipe(void)
@@ -64,6 +67,7 @@ void tela_equipe(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    getchar();
 }
 
 int tela_confirmacao(void)
