@@ -106,6 +106,8 @@ void tela_cadastrar_cliente(void)
     fprintf(arq_cliente, "%s;", cpf);
     fprintf(arq_cliente, "%s;", numero);
 
+    fclose(arq_cliente);
+
 }
 
 void tela_listar_clientes(void)

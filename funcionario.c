@@ -102,6 +102,8 @@ void tela_cadastrar_funcionario(void)
     fprintf(arq_funcionario, "%s;", numero);
     fprintf(arq_funcionario, "%s;", cargo);
 
+    fclose(arq_funcionario);
+
 }
 
 void tela_visualizar_funcionario(void)
