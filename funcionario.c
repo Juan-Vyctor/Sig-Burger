@@ -67,7 +67,6 @@ void tela_cadastrar_funcionario(void)
     printf("///   - Nome completo:                                                      ///\n");
     printf("///   - CPF:                                                                ///\n");
     printf("///   - Telefone:                                                           ///\n");
-    printf("///   - CPF:                                                                ///\n");
     printf("///                                                                         ///\n");
     printf("///   - Cargo:                                                              ///\n");
     printf("///                                                                         ///\n");
@@ -107,22 +106,73 @@ void tela_cadastrar_funcionario(void)
 
 void tela_visualizar_funcionario(void)
 {
+    FILE *arq_funcionario;
+    char nome[51];
+    char numero[12]; 
+    char cpf[12];
+    char cpf_lido[12];
+    char cargo[35];
+    int encontrado = 0;
+
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
-    printf("///                       Dados do Funcionário                               ///\n");
+    printf("///                           Buscar Cliente                                 ///\n");
     printf("///                                                                          ///\n");
-    printf("///   Nome completo:   Maria das Graças                                      ///\n");
-    printf("///   Telefone:        (11) 11111-1111                                       ///\n");
-    printf("///   CPF:             111.111.111-11                                        ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   Cargo: Atendente                                                       ///\n");
+    printf("/// Digite o CPF do Funcionário (apenas números):                            ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    scanf("%s", cpf_lido);
     getchar();
+    system("clear");
+    printf("CPF Digitado: %s\n", cpf_lido);
+    printf("\n");
+
+    arq_funcionario = fopen("arq_funcionario.csv", "rt");
+
+    if (arq_funcionario == NULL) {
+        printf("Erro na criacao do arquivo\n");
+        getchar();
+        return;
+    }
+
+    while (!feof(arq_funcionario)) {
+        fscanf(arq_funcionario, "%[^;]", nome);
+        fgetc(arq_funcionario);
+        fscanf(arq_funcionario, "%[^;]", cpf);
+        fgetc(arq_funcionario);
+        fscanf(arq_funcionario, "%[^;]", numero);
+        fgetc(arq_funcionario);
+        fscanf(arq_funcionario, "%[^;\n]", cargo);
+        fgetc(arq_funcionario);
+    
+
+        if (strcmp(cpf, cpf_lido) == 0) {
+            printf("Funcionário encontrado!\n");
+            printf("Nome: %s\n", nome);
+            printf("CPF: %s\n", cpf);
+            printf("Telefone: %s\n", numero);
+            printf("Cargo: %s\n", cargo);
+            printf("\n");
+            printf("Tecle Enter para continuar...");
+            encontrado = 1;
+            getchar();
+            fclose(arq_funcionario);
+            return;
+        }
+    }
+    fclose(arq_funcionario);
+    
+    if (!encontrado) {
+        printf("CPF não encontrado!\n");
+        printf("\n");
+        printf("Pressione Enter para continuar...");
+        getchar();
+    }
 }
 
 void tela_listar_funcionarios(void)
