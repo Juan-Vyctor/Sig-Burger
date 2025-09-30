@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "./include/funcionario.h"
 
 void modulo_funcionario(void)
@@ -48,6 +49,12 @@ int tela_menu_funcionario(void)
 
 void tela_cadastrar_funcionario(void)
 {
+     FILE *arq_funcionario;
+    char nome[51];
+    char cpf[12];
+    char numero[12];
+    char cargo[35]; 
+
     system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -58,6 +65,7 @@ void tela_cadastrar_funcionario(void)
     printf("///   Para cadastrar o funcionário, informe:                                ///\n");
     printf("///                                                                         ///\n");
     printf("///   - Nome completo:                                                      ///\n");
+    printf("///   - CPF:                                                                ///\n");
     printf("///   - Telefone:                                                           ///\n");
     printf("///   - CPF:                                                                ///\n");
     printf("///                                                                         ///\n");
@@ -65,7 +73,36 @@ void tela_cadastrar_funcionario(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    printf("Digite o Nome completo: ");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
     getchar();
+    printf("Digite o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("Digite o Celular (apenas números): ");
+    scanf("%[0-9]", numero);
+    getchar();
+    printf("Digite o cargo: ");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cargo);
+    getchar();
+    printf("Funcionário cadastrado!\n");
+    printf("Digite enter para continuar!\n");
+    getchar();
+
+    arq_funcionario = fopen("arq_funcionario.csv", "at");
+    if (arq_funcionario == NULL){
+        printf("erro na criaçao do arquivo!\n");
+        printf("Digite enter para continuar!");
+        getchar();
+
+        return;}
+    
+    fprintf(arq_funcionario, "%s;", nome);
+    fprintf(arq_funcionario, "%s;", cpf);
+    fprintf(arq_funcionario, "%s;", numero);
+    fprintf(arq_funcionario, "%s;", cargo);
+
 }
 
 void tela_visualizar_funcionario(void)
