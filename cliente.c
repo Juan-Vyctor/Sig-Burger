@@ -25,11 +25,7 @@ void modulo_cliente(void){
         {
             tela_deletar_cliente();
         }
-        else if (operacao_principal == 5)
-        {
-            tela_listar_clientes();
-        }
-
+        
     } while (operacao_principal != 0);
 }
 
@@ -47,7 +43,6 @@ int tela_menu_clientes(void)
     printf("///   2. Visualizar Clientes                                                ///\n");
     printf("///   3. Atualizar Clientes                                                 ///\n");
     printf("///   4. Deletar Clientes                                                   ///\n");
-    printf("///   5. Listar Clientes                                                    ///\n");
     printf("///   0. Voltar                                                             ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -108,28 +103,6 @@ void tela_cadastrar_cliente(void)
 
 }
 
-void tela_listar_clientes(void)
-{
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                           Lista de Clientes                              ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   1. João da Silva Souza                                                 ///\n");
-    printf("///   2. Maria Oliveira Santos                                               ///\n");
-    printf("///   3. Pedro Henrique Almeida                                              ///\n");
-    printf("///   4. Ana Clara Rodrigues                                                 ///\n");
-    printf("///   5. Lucas Pereira Costa                                                 ///\n");
-    printf("///                                                                          ///\n");
-    printf("///   Digite o número do cliente que deseja visualizar:                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    getchar();
-}
-
 void tela_visualizar_cliente(void)
 {
     FILE *arq_cliente;
@@ -164,16 +137,9 @@ void tela_visualizar_cliente(void)
         getchar();
         return;
     }
-// REMOVER FEOF!!!!! mas dps
-    while (!feof(arq_cliente)) {
-        fscanf(arq_cliente, "%[^;]", nome);
-        fgetc(arq_cliente);
-        fscanf(arq_cliente, "%[^;]", cpf);
-        fgetc(arq_cliente);
-        fscanf(arq_cliente, "%[^;\n]", numero);
-        fgetc(arq_cliente);
-    
-
+// REMOVER FEOF!!! mas dps
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^;]", nome, cpf, numero ) == 3) {
+        
         if (strcmp(cpf, cpf_lido) == 0) {
             printf("Cliente encontrado!\n");
             printf("Nome: %s\n", nome);
@@ -272,6 +238,14 @@ void tela_deletar_cliente(void)
 
 void tela_atualizar_cliente(void)
 {
+    FILE *arq_cliente;
+    FILE *arq_clientestemp;
+    char nome[51];
+    char numero[12]; 
+    char cpf[12];
+    char cpf_lido[12];
+    int encontrado = 0;
+
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
@@ -283,4 +257,66 @@ void tela_atualizar_cliente(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    arq_cliente = fopen("arq_cliente.csv", "rt");
+    if (arq_cliente == NULL) {
+        printf("Erro ao abrir o arquivo de clientes.\n");
+        getchar();
+        return;
+    }
+
+    arq_clientestemp = fopen("arq_clientestemp.csv", "wt");
+    if (arq_clientestemp == NULL) {
+       printf("erro ao abrir o arquivo temporario dos clientes.""\n");
+       fclose(arq_cliente);
+       getchar();
+       return;
+    }
+
+
+    printf("Digite o CPF do cliente (apenas números):""\n");
+    scanf("%s", cpf_lido);
+    getchar();
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",nome, cpf, numero) == 3){
+        if (strcmp(cpf, cpf_lido) == 0) {
+            encontrado = 1;
+            printf("Cliente encontrado. Insira os novos dados do cliente: \n");
+
+            printf("Digite seu Nome completo: ");
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+            getchar();
+            
+            printf("Digite seu CPF (apenas números): ");
+            scanf("%[0-9]", cpf);
+            getchar();
+            
+            printf("Digite seu celular (apenas números): ");
+            scanf("%[0-9]", numero);
+            getchar();
+
+        } else {
+            fprintf(arq_clientestemp, "%s;%s;%s\n", nome, cpf, numero);
+        } 
+    }
+        if (encontrado){
+            fprintf(arq_clientestemp, "%s;%s;%s\n", nome, cpf, numero);
+            printf("Cliente atualizado com sucesso!\n");
+        }
+        fclose(arq_cliente);
+        fclose(arq_clientestemp);
+
+        if(!encontrado) {
+            printf("Cliente não encontrado!\n");
+            remove("arq_clientestemp.csv");
+            getchar();
+        } else {
+            
+            if (remove("arq_cliente.csv") != 0) {
+                printf("Erro ao remover clientes.csv\n");
+            }
+            if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0) {
+                printf("Erro ao  renomear o arq_cliente.csv\n");
+            }
+        }
+    getchar();
 }
