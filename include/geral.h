@@ -6,5 +6,6 @@
     void tela_equipe(void);
     int tela_confirmacao(void);
     void tela_saida(void);
-    
+    //void tela_gestao(void);
+
 #endif

@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include "./include/geral.h"
 
+//void tela_gestao(void)
+//{
+//    system("clear");
+//   printf("////////////////////////////////////////////////////////////////////////////////\n");
+//    printf("///                                                                          ///\n");
+//    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+//    printf("///                                                                          ///\n");
+//    printf("///                           Tela de Gestão                                 ///\n");
+//    printf("///                                                                          ///\n");
+//    printf("///                   1 - Menu Pricipal                                      ///\n");
+//    printf("///                   2 - Sobre o Programa                                   ///\n");
+//    printf("///                   3 - Desenvolvedores                                    ///\n");
+//    printf("///                   0 - Sair do Sig-Burguer                                ///\n");
+//    printf("///                                                                          ///\n");
+//    printf("////////////////////////////////////////////////////////////////////////////////\n");
+//    printf("\n");
+//}
+
 int tela_principal(void)
 {
     int operacao = 0;
