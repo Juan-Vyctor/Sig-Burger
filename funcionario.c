@@ -105,7 +105,7 @@ void tela_cadastrar_funcionario(void)
     fprintf(arq_funcionario, "%s;", nome);
     fprintf(arq_funcionario, "%s;", cpf);
     fprintf(arq_funcionario, "%s;", numero);
-    fprintf(arq_funcionario, "%s;", cargo);
+    fprintf(arq_funcionario, "%s;\n", cargo);
     
     fclose(arq_funcionario);
 
@@ -139,7 +139,7 @@ void tela_visualizar_funcionario(void)
     printf("CPF Digitado: %s\n", cpf_lido);
     printf("\n");
 
-    arq_funcionario = fopen("arq_funcionario.csv", "r");
+    arq_funcionario = fopen("arq_funcionario.csv", "rt");
 
     if (arq_funcionario == NULL) {
         printf("Erro na criacao do arquivo\n");
