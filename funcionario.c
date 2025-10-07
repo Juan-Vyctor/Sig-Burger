@@ -54,11 +54,8 @@ int tela_menu_funcionario(void)
 
 void tela_cadastrar_funcionario(void)
 {
-     FILE *arq_funcionario;
-    char nome[51];
-    char cpf[12];
-    char numero[12];
-    char cargo[35]; 
+    FILE *arq_funcionario;
+    Funcionario func;
 
     system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -79,16 +76,16 @@ void tela_cadastrar_funcionario(void)
     printf("\n");
 
     printf("Digite o Nome completo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.nome);
     getchar();
     printf("Digite o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    scanf("%[0-9]", func.cpf);
     getchar();
     printf("Digite o Celular (apenas números): ");
-    scanf("%[0-9]", numero);
+    scanf("%[0-9]", func.numero);
     getchar();
     printf("Digite o cargo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cargo);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.cargo);
     getchar();
     printf("Funcionário cadastrado!\n");
     printf("Digite enter para continuar!\n");
@@ -102,10 +99,10 @@ void tela_cadastrar_funcionario(void)
 
         return;}
     
-    fprintf(arq_funcionario, "%s;", nome);
-    fprintf(arq_funcionario, "%s;", cpf);
-    fprintf(arq_funcionario, "%s;", numero);
-    fprintf(arq_funcionario, "%s;\n", cargo);
+    fprintf(arq_funcionario, "%s;", func.nome);
+    fprintf(arq_funcionario, "%s;", func.cpf);
+    fprintf(arq_funcionario, "%s;", func.numero);
+    fprintf(arq_funcionario, "%s;\n", func.cargo);
     
     fclose(arq_funcionario);
 
@@ -114,11 +111,7 @@ void tela_cadastrar_funcionario(void)
 void tela_visualizar_funcionario(void)
 {
     FILE *arq_funcionario;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cpf_lido[12];
-    char cargo[35];
+    Funcionario func;
     int encontrado = 0;
 
     system("clear");
@@ -133,10 +126,10 @@ void tela_visualizar_funcionario(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    scanf("%s", cpf_lido);
+    scanf("%s", func.cpf_lido);
     getchar();
     system("clear");
-    printf("CPF Digitado: %s\n", cpf_lido);
+    printf("CPF Digitado: %s\n", func.cpf_lido);
     printf("\n");
 
     arq_funcionario = fopen("arq_funcionario.csv", "rt");
@@ -148,14 +141,14 @@ void tela_visualizar_funcionario(void)
     }
 
     //Melhoramento de busca de funcionario.
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^;\n]", nome, cpf, numero, cargo ) == 4) {
+    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^;\n]", func.nome, func.cpf, func.numero, func.cargo ) == 4) {
 
-        if (strcmp(cpf, cpf_lido) == 0) {
+        if (strcmp(func.cpf, func.cpf_lido) == 0) {
             printf("Funcionário encontrado!\n");
-            printf("Nome: %s\n", nome);
-            printf("CPF: %s\n", cpf);
-            printf("Telefone: %s\n", numero);
-            printf("Cargo: %s\n", cargo);
+            printf("Nome: %s\n", func.nome);
+            printf("CPF: %s\n", func.cpf);
+            printf("Telefone: %s\n", func.numero);
+            printf("Cargo: %s\n", func.cargo);
             printf("\n");
             printf("Tecle Enter para continuar...");
             encontrado = 1;
@@ -178,11 +171,7 @@ void tela_deletar_funcionario(void)
 {
     FILE *arq_funcionario;
     FILE *arq_funcionariostemp;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cargo[35];
-    char cpf_lido[12];
+    Funcionario func;
     int encontrado = 0;
 
     system("clear");
@@ -212,10 +201,10 @@ void tela_deletar_funcionario(void)
        return;
     }
     printf("Digite o CPF do Funcionário (apenas números):""\n");
-    scanf("%s", cpf_lido);
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n",nome, cpf, numero, cargo) == 4){
-        if (strcmp(cpf, cpf_lido) !=0) {
-        fprintf(arq_funcionariostemp, "%s;%s;%s\n", nome, cpf, numero);
+    scanf("%s", func.cpf_lido);
+    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n",func.nome, func.cpf, func.numero, func.cargo) == 4){
+        if (strcmp(func.cpf, func.cpf_lido) !=0) {
+        fprintf(arq_funcionariostemp, "%s;%s;%s\n", func.nome, func.cpf, func.numero);
         } else {
             encontrado = 1;
         }
@@ -224,14 +213,14 @@ void tela_deletar_funcionario(void)
     fclose(arq_funcionariostemp);
 
     if (!encontrado) {
-        printf("Funcionário com CPF %s não encontrado.\n", cpf_lido);
+        printf("Funcionário com CPF %s não encontrado.\n", func.cpf_lido);
         remove("arq_funcionariostemp.csv");
         getchar();
         return;
     } 
 
     else {
-        printf("Funcionário com CPF %s encontrado e excluido.\n", cpf_lido);
+        printf("Funcionário com CPF %s encontrado e excluido.\n", func.cpf_lido);
         
         if (remove("arq_funcionario.csv") != 0) {
             printf("Erro ao remover arq_funcionario.csv\n");
@@ -252,11 +241,7 @@ void tela_atualizar_funcionario(void)
 {
     FILE *arq_funcionario;
     FILE *arq_funcionariostemp;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cargo[25];
-    char cpf_lido[12];
+    Funcionario func;
     int encontrado = 0;
 
     system("clear");
@@ -288,35 +273,35 @@ void tela_atualizar_funcionario(void)
 
 
     printf("Digite o CPF do funcionário (apenas números):""\n");
-    scanf("%s", cpf_lido);
+    scanf("%s", func.cpf_lido);
     getchar();
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n", nome, cpf, numero, cargo) == 4){
-        if (strcmp(cpf, cpf_lido) == 0) {
+    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n", func.nome, func.cpf, func.numero, func.cargo) == 4){
+        if (strcmp(func.cpf, func.cpf_lido) == 0) {
             encontrado = 1;
             printf("Funcionário encontrado. Insira os novos dados do Funcionário: \n");
 
             printf("Digite seu Nome completo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.nome);
             getchar();
             
             printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", cpf);
+            scanf("%[0-9]", func.cpf);
             getchar();
             
             printf("Digite seu celular (apenas números): ");
-            scanf("%[0-9]", numero);
+            scanf("%[0-9]", func.numero);
             getchar();
 
             printf("Digite seu Cargo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cargo);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.cargo);
             getchar();
 
         } else {
-            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", nome, cpf, numero, cargo);
+            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", func.nome, func.cpf, func.numero, func.cargo);
         } 
     }
         if (encontrado){
-            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", nome, cpf, numero, cargo);
+            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", func.nome, func.cpf, func.numero, func.cargo);
             printf("Funcionário atualizado com sucesso!\n");
         }
         fclose(arq_funcionario);
