@@ -36,7 +36,6 @@ int tela_menu_enderecos(void)
     printf("///                  = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                         ///\n");
     printf("///                            Menu Endereços                               ///\n");
-    printf("///                         (em desenvolvimento)                            ///\n");
     printf("///                                                                         ///\n");
     printf("///   1. Cadastrar Endereços                                                ///\n");
     printf("///   2. Visualizar Endereços                                               ///\n");
@@ -64,9 +63,7 @@ void tela_cadastrar_endereco(void)
     printf("///                                                                          ///\n");
     printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
     printf("///                                                                          ///\n");
-    printf("///                           Cadastrar Endereço                             ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                               Em breve...                                ///\n");
+    printf("///                          Cadastrar Endereço                              ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -83,6 +80,10 @@ void tela_cadastrar_endereco(void)
     printf("Digite o numero da casa (apenas números): ");
     scanf("%[0-4]", num_casa);
     getchar();
+    printf("Endereço cadastrado!\n");
+    printf("Digite enter para continuar!\n");
+    getchar();
+
 
     arq_endereco = fopen("arq_endereco.csv", "at");
     if (arq_endereco == NULL){
@@ -94,9 +95,11 @@ void tela_cadastrar_endereco(void)
     
     fprintf(arq_endereco, "%s;", cpf);
     fprintf(arq_endereco, "%s;", rua);
-    fprintf(arq_endereco, "%s\n", bairro);
-    fprintf(arq_endereco, "%s\n", num_casa);
+    fprintf(arq_endereco, "%s;", bairro);
+    fprintf(arq_endereco, "%s;\n", num_casa);
+
     fclose(arq_endereco);
+
 }
 
 void tela_visualizar_endereco(void)
@@ -112,42 +115,41 @@ void tela_visualizar_endereco(void)
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                          ///\n");
-    printf("///   Endereço salvo no momento:                                             ///\n");
-    printf("///       Rua das Flores, 123                                                ///\n");
-    printf("///       Bairro: Centro                                                     ///\n");
-    printf("///       Cidade: São Paulo - SP                                             ///\n");
-    printf("///       Complemento: Apto 45, Bloco B                                      ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                          Visualizar Endereço                             ///\n");
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    getchar();
+    printf("Digite o CPF (apenas números):\n");
 
-     scanf("%s", cpf_lido);
+    scanf("%s", cpf_lido);
     getchar();
     system("clear");
     printf("CPF Digitado: %s\n", cpf_lido);
     printf("\n");
 
-    arq_endereco = fopen("arq_endereco.csv", "r");
+    arq_endereco = fopen("arq_endereco.csv", "rt");
 
     if (arq_endereco == NULL) {
         printf("Erro na criacao do arquivo\n");
         getchar();
         return;
     }
+
 // REMOVER FEOF!!! mas dps
-    while (fscanf(arq_endereco, "%[^;];%[^;];%[^;]%[^;];", cpf, rua, bairro, num_casa ) == 4) {
+    while (fscanf(arq_endereco, "%[^;];%[^;];%[^;];%[^;\n]", cpf, rua, bairro, num_casa ) == 4) {
         
         if (strcmp(cpf, cpf_lido) == 0) {
-            printf("Cliente encontrado!\n");
+            printf("Endereço encontrado!\n");
             printf("CPF: %s\n", cpf);
             printf("Rua: %s\n", rua);
             printf("Bairro: %s\n", bairro);
-            printf("Numero da Casa: %s\n", bairro);
+            printf("Numero da Casa: %s\n", num_casa);
             printf("\n");
             printf("Tecle Enter para continuar...");
-            getchar();
             encontrado = 1;
+            getchar();
             fclose(arq_endereco);
             return;
         }
@@ -184,39 +186,40 @@ void tela_atualizar_endereco(void)
     printf("\n");
     getchar();
 
-     arq_endereco = fopen("arq_endereco.csv", "rt");
+    arq_endereco = fopen("arq_endereco.csv", "rt");
+
     if (arq_endereco == NULL) {
-        printf("Erro ao abrir o arquivo de clientes.\n");
+        printf("Erro ao abrir o arquivo de Endereços.\n");
         getchar();
         return;
     }
 
     arq_enderecotemp = fopen("arq_enderecotemp.csv", "wt");
     if (arq_enderecotemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos clientes.""\n");
+       printf("erro ao abrir o arquivo temporario dos Endereços.""\n");
        fclose(arq_endereco);
        getchar();
        return;
     }
 
 
-    printf("Digite o CPF do cliente (apenas números):""\n");
+    printf("Digite o CPF (apenas números):""\n");
     scanf("%s", cpf_lido);
     getchar();
     while (fscanf(arq_endereco, "%[^;];%[^;];%[^;];%[^\n]\n",cpf, rua, bairro, num_casa) == 4){
         if (strcmp(cpf, cpf_lido) == 0) {
             encontrado = 1;
-            printf("Cliente encontrado. Insira os novos dados do cliente: \n");
+            printf("Endereço encontrado. Insira os novos dados do endereço: \n");
 
             printf("Digite seu CPF (apenas números): ");
             scanf("%[0-9]", cpf);
             getchar();
 
-            printf("Digite seu Nome da rua: ");
+            printf("Digite o Nome da rua: ");
             scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", rua);
             getchar();
             
-            printf("Digite seu Nome do bairro: ");
+            printf("Digite o Nome do bairro: ");
             scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", bairro);
             getchar();
             
@@ -225,24 +228,24 @@ void tela_atualizar_endereco(void)
             getchar();
 
         } else {
-            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n",cpf, rua, bairro, num_casa);
+            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n", cpf, rua, bairro, num_casa);
         } 
     }
         if (encontrado){
-            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n",cpf, rua, bairro, num_casa);
-            printf("Cliente atualizado com sucesso!\n");
+            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n", cpf, rua, bairro, num_casa);
+            printf("Endereço atualizado com sucesso!\n");
         }
         fclose(arq_endereco);
         fclose(arq_enderecotemp);
 
         if(!encontrado) {
-            printf("Cliente não encontrado!\n");
+            printf("Endereço não encontrado!\n");
             remove("arq_enderecotemp.csv");
             getchar();
         } else {
             
             if (remove("arq_endereco.csv") != 0) {
-                printf("Erro ao remover clientes.csv\n");
+                printf("Erro ao remover Endereços.csv\n");
             }
             if (rename("arq_enderecotemp.csv", "arq_endereco.csv") != 0) {
                 printf("Erro ao renomear o arq_endereco.csv\n");
@@ -269,22 +272,20 @@ void tela_deletar_endereco(void)
     printf("///                                                                          ///\n");
     printf("///                           Deletar Endereço                               ///\n");
     printf("///                                                                          ///\n");
-    printf("///                               Em breve...                                ///\n");
-    printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     getchar();
     
     arq_endereco= fopen("arq_endereco.csv", "rt");
     if (arq_endereco== NULL) {
-        printf("Erro ao abrir o arquivo de clientes. \n");
+        printf("Erro ao abrir o arquivo de Endereços. \n");
         getchar();
         return;
     }
 
     arq_enderecotemp = fopen("arq_enderecotemp.csv", "wt");
     if (arq_enderecotemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos clientes.""\n");
+       printf("erro ao abrir o arquivo temporario dos Endereços.""\n");
        fclose(arq_endereco);
        getchar();
        return;
@@ -302,14 +303,14 @@ void tela_deletar_endereco(void)
     fclose(arq_enderecotemp);
 
     if (!encontrado) {
-        printf("Cliente com CPF %s não encontrado.\n", cpf_lido);
+        printf("Endereço com CPF %s não encontrado.\n", cpf_lido);
         remove("arq_enderecotemp.csv");
         getchar();
         return;
     } 
 
     else {
-        printf("Cliente com CPF %s encontrado e excluido.\n", cpf_lido);
+        printf("Endereço com CPF %s encontrado e excluido.\n", cpf_lido);
         
         if (remove("arq_endereco.csv") != 0) {
             printf("Erro ao remover arq_endereco.csv\n");
