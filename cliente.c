@@ -55,10 +55,7 @@ int tela_menu_clientes(void)
 void tela_cadastrar_cliente(void)
 {
     FILE *arq_cliente;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-
+    Cliente cli;
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -76,14 +73,14 @@ void tela_cadastrar_cliente(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    printf("Digite seu Nome completo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+    printf("Digite seu cli.Nome completo: ");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cli.nome);
     getchar();
-    printf("Digite seu CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    printf("Digite seu cli.CPF (apenas números): ");
+    scanf("%[0-9]", cli.cpf);
     getchar();
     printf("Digite seu celular (apenas números): ");
-    scanf("%[0-9]", numero);
+    scanf("%[0-9]", cli.numero);
     getchar();
     printf("cliente cadastrado!\n");
     printf("Digite enter para continuar!");
@@ -97,19 +94,16 @@ void tela_cadastrar_cliente(void)
 
         return;}
     
-    fprintf(arq_cliente, "%s;", nome);
-    fprintf(arq_cliente, "%s;", cpf);
-    fprintf(arq_cliente, "%s\n", numero);
+        fprintf(arq_cliente, "%s;", cli.nome);
+        fprintf(arq_cliente, "%s;", cli.cpf);
+        fprintf(arq_cliente, "%s\n", cli.numero);
 
 }
 
 void tela_visualizar_cliente(void)
 {
     FILE *arq_cliente;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cpf_lido[12];
+    Cliente cli;
     int encontrado = 0;
 
     system("clear");
@@ -124,10 +118,10 @@ void tela_visualizar_cliente(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    scanf("%s", cpf_lido);
+    scanf("%s", cli.cpf_lido);
     getchar();
     system("clear");
-    printf("CPF Digitado: %s\n", cpf_lido);
+    printf("CPF Digitado: %s\n", cli.cpf_lido);
     printf("\n");
 
     arq_cliente = fopen("arq_cliente.csv", "r");
@@ -138,13 +132,13 @@ void tela_visualizar_cliente(void)
         return;
     }
 // REMOVER FEOF!!! mas dps
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^;]", nome, cpf, numero ) == 3) {
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^;]", cli.nome, cli.cpf, cli.numero ) == 3) {
         
-        if (strcmp(cpf, cpf_lido) == 0) {
+        if (strcmp(cli.cpf, cli.cpf_lido) == 0) {
             printf("Cliente encontrado!\n");
-            printf("Nome: %s\n", nome);
-            printf("CPF: %s\n", cpf);
-            printf("Telefone: %s\n", numero);
+            printf("Nome: %s\n", cli.nome);
+            printf("CPF: %s\n", cli.cpf);
+            printf("Telefone: %s\n", cli.numero);
             printf("\n");
             printf("Tecle Enter para continuar...");
             getchar();
@@ -167,10 +161,7 @@ void tela_deletar_cliente(void)
 {
     FILE *arq_cliente;
     FILE *arq_clientestemp;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cpf_lido[12];
+    Cliente cli;
     int encontrado = 0;
 
     system("clear");
@@ -200,10 +191,10 @@ void tela_deletar_cliente(void)
        return;
     }
     printf("Digite o CPF do cliente (apenas números):""\n");
-    scanf("%s", cpf_lido);
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",nome, cpf, numero) == 3){
-        if (strcmp(cpf, cpf_lido) !=0) {
-        fprintf(arq_clientestemp, "%s;%s;%s\n", nome, cpf, numero);
+    scanf("%s", cli.cpf_lido);
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",cli.nome, cli.cpf, cli.numero) == 3){
+        if (strcmp(cli.cpf, cli.cpf_lido) !=0) {
+        fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
         } else {
             encontrado = 1;
         }
@@ -212,21 +203,21 @@ void tela_deletar_cliente(void)
     fclose(arq_clientestemp);
 
     if (!encontrado) {
-        printf("Cliente com CPF %s não encontrado.\n", cpf_lido);
+        printf("Cliente com CPF %s não encontrado.\n", cli.cpf_lido);
         remove("arq_clientestemp.csv");
         getchar();
         return;
     } 
 
     else {
-        printf("Cliente com CPF %s encontrado e excluido.\n", cpf_lido);
+        printf("Cliente com CPF %s encontrado e excluido.\n", cli.cpf_lido);
         
         if (remove("arq_cliente.csv") != 0) {
             printf("Erro ao remover arq_cliente.csv\n");
             getchar();
         }
         if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0) {
-            printf("Erro ao renomear arq_clientestemp.csv\n");
+            printf("Erro ao recli.nomear arq_clientestemp.csv\n");
             getchar();
         }
     getchar();
@@ -240,10 +231,7 @@ void tela_atualizar_cliente(void)
 {
     FILE *arq_cliente;
     FILE *arq_clientestemp;
-    char nome[51];
-    char numero[12]; 
-    char cpf[12];
-    char cpf_lido[12];
+    Cliente cli;
     int encontrado = 0;
 
     system("clear");
@@ -275,31 +263,31 @@ void tela_atualizar_cliente(void)
 
 
     printf("Digite o CPF do cliente (apenas números):""\n");
-    scanf("%s", cpf_lido);
+    scanf("%s", cli.cpf_lido);
     getchar();
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",nome, cpf, numero) == 3){
-        if (strcmp(cpf, cpf_lido) == 0) {
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",cli.nome, cli.cpf, cli.numero) == 3){
+        if (strcmp(cli.cpf, cli.cpf_lido) == 0) {
             encontrado = 1;
             printf("Cliente encontrado. Insira os novos dados do cliente: \n");
 
             printf("Digite seu Nome completo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cli.nome);
             getchar();
             
             printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", cpf);
+            scanf("%[0-9]", cli.cpf);
             getchar();
             
             printf("Digite seu celular (apenas números): ");
-            scanf("%[0-9]", numero);
+            scanf("%[0-9]", cli.numero);
             getchar();
 
         } else {
-            fprintf(arq_clientestemp, "%s;%s;%s\n", nome, cpf, numero);
+            fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
         } 
     }
         if (encontrado){
-            fprintf(arq_clientestemp, "%s;%s;%s\n", nome, cpf, numero);
+            fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
             printf("Cliente atualizado com sucesso!\n");
         }
         fclose(arq_cliente);
@@ -315,7 +303,7 @@ void tela_atualizar_cliente(void)
                 printf("Erro ao remover clientes.csv\n");
             }
             if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0) {
-                printf("Erro ao  renomear o arq_cliente.csv\n");
+                printf("Erro ao  recli.nomear o arq_cliente.csv\n");
             }
         }
     getchar();
