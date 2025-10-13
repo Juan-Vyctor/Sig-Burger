@@ -52,7 +52,6 @@ int main(void)
                     break;
 
                 case 0:
-                    // Confirmação antes de sair do menu principal
                     operacao_principal = tela_confirmacao_voltar();
                     break;
 
@@ -77,6 +76,7 @@ int main(void)
             break;
 
         case 0:
+            opcao_gestao = tela_confirmacao();
             break;
 
         default:
@@ -88,6 +88,7 @@ int main(void)
     } while (opcao_gestao != 0);
 
     system("clear");
-    printf("Encerrando o sistema de gestão...\n");
+    tela_saida();
+
     return 0;
 }
