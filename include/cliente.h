@@ -8,7 +8,7 @@
     char nome[51];
     char numero[12]; 
     char cpf[12];
-    char cpf_lido[12];
+    int status;
 
 };
 
