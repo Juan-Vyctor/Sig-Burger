@@ -2,23 +2,23 @@
 #include <stdlib.h>
 #include "./include/geral.h"
 
-//void tela_gestao(void)
-//{
-//    system("clear");
-//   printf("////////////////////////////////////////////////////////////////////////////////\n");
-//    printf("///                                                                          ///\n");
-//    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-//    printf("///                                                                          ///\n");
-//    printf("///                           Tela de Gestão                                 ///\n");
-//    printf("///                                                                          ///\n");
-//    printf("///                   1 - Menu Pricipal                                      ///\n");
-//    printf("///                   2 - Sobre o Programa                                   ///\n");
-//    printf("///                   3 - Desenvolvedores                                    ///\n");
-//    printf("///                   0 - Sair do Sig-Burguer                                ///\n");
-//    printf("///                                                                          ///\n");
-//    printf("////////////////////////////////////////////////////////////////////////////////\n");
-//    printf("\n");
-//}
+void tela_gestao(void)
+{
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Tela de Gestão                                 ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                   1 - Menu Pricipal                                      ///\n");
+    printf("///                   2 - Sobre o Programa                                   ///\n");
+    printf("///                   3 - Desenvolvedores                                    ///\n");
+    printf("///                   0 - Sair do Sig-Burguer                                ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
 
 int tela_principal(void)
 {
@@ -33,8 +33,6 @@ int tela_principal(void)
     printf("///            3. Menu Funcionários                                         ///\n");
     printf("///            4. Menu Endereços                                            ///\n");
     printf("///            5. Histórico de pedidos                                      ///\n");
-    printf("///            6. Sobre o Sig-Burguer                                       ///\n");
-    printf("///            7. Sobre a Equipe                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -62,6 +60,7 @@ void tela_sobre(void)
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     getchar();
+    getchar();
 }
 
 void tela_equipe(void)
@@ -78,7 +77,7 @@ void tela_equipe(void)
     printf("///             Git: https://github.com/Renan988                             ///\n");
     printf("///                                                                          ///\n");
     printf("///             Juan Vyctor Silva Garcia de Oliveira                         ///\n");
-    printf("///             E-mail: juanvyctor.sgo@gmail.com                             ///\n");    
+    printf("///             E-mail: juanvyctor.sgo@gmail.com                             ///\n");
     printf("///             Git: https://github.com/Juan-Vyctor                          ///\n");
     printf("///                                                                          ///\n");
     printf("///      Link do Projeto: https://github.com/Juan-Vyctor/Sig-Burger.git      ///\n");
@@ -86,6 +85,27 @@ void tela_equipe(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     getchar();
+    getchar();
+}
+
+int tela_confirmacao_voltar(void)
+{
+    int operacao = 0;
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                      Deseja voltar a gestão                              ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                   1 - Continuar no Menu Principal                        ///\n");
+    printf("///                   0 - Voltar                                             ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    scanf("%d", &operacao);
+    getchar();
+    return operacao;
 }
 
 int tela_confirmacao(void)
