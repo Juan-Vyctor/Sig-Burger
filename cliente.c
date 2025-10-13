@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "./include/cliente.h"
-//#include "./include/validacoes.h"
+// #include "./include/validacoes.h"
 
-void modulo_cliente(void){
+void modulo_cliente(void)
+{
     int operacao_principal;
-    do{
+    do
+    {
         operacao_principal = tela_menu_clientes();
-        
+
         if (operacao_principal == 1)
         {
             tela_cadastrar_cliente();
@@ -16,7 +18,7 @@ void modulo_cliente(void){
         else if (operacao_principal == 2)
         {
             tela_visualizar_cliente();
-        } 
+        }
         else if (operacao_principal == 3)
         {
             tela_atualizar_cliente();
@@ -25,7 +27,7 @@ void modulo_cliente(void){
         {
             tela_deletar_cliente();
         }
-        
+
     } while (operacao_principal != 0);
 }
 
@@ -87,17 +89,20 @@ void tela_cadastrar_cliente(void)
     getchar();
 
     arq_cliente = fopen("arq_cliente.csv", "at");
-    if (arq_cliente == NULL){
+    if (arq_cliente == NULL)
+    {
         printf("erro na criaçao do arquivo!\n");
         printf("Digite enter para continuar");
         getchar();
 
-        return;}
-    
-        fprintf(arq_cliente, "%s;", cli.nome);
-        fprintf(arq_cliente, "%s;", cli.cpf);
-        fprintf(arq_cliente, "%s\n", cli.numero);
+        return;
+    }
 
+    fprintf(arq_cliente, "%s;", cli.nome);
+    fprintf(arq_cliente, "%s;", cli.cpf);
+    fprintf(arq_cliente, "%s\n", cli.numero);
+
+    fclose(arq_cliente);
 }
 
 void tela_visualizar_cliente(void)
@@ -126,15 +131,18 @@ void tela_visualizar_cliente(void)
 
     arq_cliente = fopen("arq_cliente.csv", "r");
 
-    if (arq_cliente == NULL) {
+    if (arq_cliente == NULL)
+    {
         printf("Erro na criacao do arquivo\n");
         getchar();
         return;
     }
-// REMOVER FEOF!!! mas dps
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^;]", cli.nome, cli.cpf, cli.numero ) == 3) {
-        
-        if (strcmp(cli.cpf, cli.cpf_lido) == 0) {
+    // REMOVER FEOF!!! mas dps
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^;]", cli.nome, cli.cpf, cli.numero) == 3)
+    {
+
+        if (strcmp(cli.cpf, cli.cpf_lido) == 0)
+        {
             printf("Cliente encontrado!\n");
             printf("Nome: %s\n", cli.nome);
             printf("CPF: %s\n", cli.cpf);
@@ -149,7 +157,8 @@ void tela_visualizar_cliente(void)
     }
     fclose(arq_cliente);
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         printf("Cliente não encontrado!\n");
         printf("\n");
         printf("Pressione Enter para continuar...");
@@ -177,52 +186,64 @@ void tela_deletar_cliente(void)
     printf("\n");
 
     arq_cliente = fopen("arq_cliente.csv", "rt");
-    if (arq_cliente == NULL) {
+    if (arq_cliente == NULL)
+    {
         printf("Erro ao abrir o arquivo de clientes. \n");
         getchar();
         return;
     }
 
     arq_clientestemp = fopen("arq_clientestemp.csv", "wt");
-    if (arq_clientestemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos clientes.""\n");
-       fclose(arq_cliente);
-       getchar();
-       return;
+    if (arq_clientestemp == NULL)
+    {
+        printf("erro ao abrir o arquivo temporario dos clientes."
+               "\n");
+        fclose(arq_cliente);
+        getchar();
+        return;
     }
-    printf("Digite o CPF do cliente (apenas números):""\n");
+    printf("Digite o CPF do cliente (apenas números):"
+           "\n");
     scanf("%s", cli.cpf_lido);
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",cli.nome, cli.cpf, cli.numero) == 3){
-        if (strcmp(cli.cpf, cli.cpf_lido) !=0) {
-        fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
-        } else {
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n", cli.nome, cli.cpf, cli.numero) == 3)
+    {
+        if (strcmp(cli.cpf, cli.cpf_lido) != 0)
+        {
+            fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
+        }
+        else
+        {
             encontrado = 1;
         }
     }
     fclose(arq_cliente);
     fclose(arq_clientestemp);
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         printf("Cliente com CPF %s não encontrado.\n", cli.cpf_lido);
         remove("arq_clientestemp.csv");
         getchar();
         return;
-    } 
+    }
 
-    else {
+    else
+    {
         printf("Cliente com CPF %s encontrado e excluido.\n", cli.cpf_lido);
-        
-        if (remove("arq_cliente.csv") != 0) {
+
+        if (remove("arq_cliente.csv") != 0)
+        {
             printf("Erro ao remover arq_cliente.csv\n");
             getchar();
         }
-        if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0) {
+        if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0)
+        {
             printf("Erro ao recli.nomear arq_clientestemp.csv\n");
             getchar();
         }
-    getchar();
+        getchar();
     }
-     
+
     printf("Cliente excluido com sucesso!\n");
     getchar();
 }
@@ -247,64 +268,76 @@ void tela_atualizar_cliente(void)
     printf("\n");
 
     arq_cliente = fopen("arq_cliente.csv", "rt");
-    if (arq_cliente == NULL) {
+    if (arq_cliente == NULL)
+    {
         printf("Erro ao abrir o arquivo de clientes.\n");
         getchar();
         return;
     }
 
     arq_clientestemp = fopen("arq_clientestemp.csv", "wt");
-    if (arq_clientestemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos clientes.""\n");
-       fclose(arq_cliente);
-       getchar();
-       return;
+    if (arq_clientestemp == NULL)
+    {
+        printf("erro ao abrir o arquivo temporario dos clientes."
+               "\n");
+        fclose(arq_cliente);
+        getchar();
+        return;
     }
 
-
-    printf("Digite o CPF do cliente (apenas números):""\n");
+    printf("Digite o CPF do cliente (apenas números):"
+           "\n");
     scanf("%s", cli.cpf_lido);
     getchar();
-    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n",cli.nome, cli.cpf, cli.numero) == 3){
-        if (strcmp(cli.cpf, cli.cpf_lido) == 0) {
+    while (fscanf(arq_cliente, "%[^;];%[^;];%[^\n]\n", cli.nome, cli.cpf, cli.numero) == 3)
+    {
+        if (strcmp(cli.cpf, cli.cpf_lido) == 0)
+        {
             encontrado = 1;
             printf("Cliente encontrado. Insira os novos dados do cliente: \n");
 
             printf("Digite seu Nome completo: ");
             scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cli.nome);
             getchar();
-            
+
             printf("Digite seu CPF (apenas números): ");
             scanf("%[0-9]", cli.cpf);
             getchar();
-            
+
             printf("Digite seu celular (apenas números): ");
             scanf("%[0-9]", cli.numero);
             getchar();
-
-        } else {
+        }
+        else
+        {
             fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
-        } 
+        }
     }
-        if (encontrado){
-            fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
-            printf("Cliente atualizado com sucesso!\n");
-        }
-        fclose(arq_cliente);
-        fclose(arq_clientestemp);
+    if (encontrado)
+    {
+        fprintf(arq_clientestemp, "%s;%s;%s\n", cli.nome, cli.cpf, cli.numero);
+        printf("Cliente atualizado com sucesso!\n");
+    }
+    fclose(arq_cliente);
+    fclose(arq_clientestemp);
 
-        if(!encontrado) {
-            printf("Cliente não encontrado!\n");
-            remove("arq_clientestemp.csv");
-            getchar();
-        } else {
-            
-            if (remove("arq_cliente.csv") != 0) {
-                printf("Erro ao remover clientes.csv\n");
-            }
-            if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0) {
-                printf("Erro ao  recli.nomear o arq_cliente.csv\n");
-            }
+    if (!encontrado)
+    {
+        printf("Cliente não encontrado!\n");
+        remove("arq_clientestemp.csv");
+        getchar();
+    }
+    else
+    {
+
+        if (remove("arq_cliente.csv") != 0)
+        {
+            printf("Erro ao remover clientes.csv\n");
         }
+        if (rename("arq_clientestemp.csv", "arq_cliente.csv") != 0)
+        {
+            printf("Erro ao  recli.nomear o arq_cliente.csv\n");
+        }
+    }
     getchar();
 }
