@@ -226,11 +226,11 @@ void tela_deletar_cliente(void)
                 printf("Nome: %s\n", cli->nome);
                 printf("CPF: %s\n", cli->cpf);
                 printf("Telefone: %s\n", cli->numero);
-
+                getchar();
                 encontrado = True;
             }
             do {
-                printf("\nDeseja realmente excluir esse paciente? (S/N): ");
+                printf("\nDeseja realmente excluir esse Cliente? (S/N): ");
                 scanf(" %c", &resposta);
                 resposta = confirmar_acao(resposta);
                 
