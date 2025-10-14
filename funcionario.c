@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#include "./include/util.h"
+#define True 1
+#define False 0
 #include "./include/funcionario.h"
 
 void modulo_funcionario(void)
@@ -55,7 +59,8 @@ int tela_menu_funcionario(void)
 void tela_cadastrar_funcionario(void)
 {
     FILE *arq_funcionario;
-    Funcionario func;
+    Funcionario* func;
+    func = (Funcionario*)malloc(sizeof(Funcionario));
 
     system("clear");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -76,43 +81,46 @@ void tela_cadastrar_funcionario(void)
     printf("\n");
 
     printf("Digite o Nome completo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.nome);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->nome);
     getchar();
     printf("Digite o CPF (apenas números): ");
-    scanf("%[0-9]", func.cpf);
+    scanf("%[0-9]", func->cpf);
     getchar();
     printf("Digite o Celular (apenas números): ");
-    scanf("%[0-9]", func.numero);
+    scanf("%[0-9]", func->numero);
     getchar();
     printf("Digite o cargo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.cargo);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->cargo);
     getchar();
     printf("Funcionário cadastrado!\n");
     printf("Digite enter para continuar!\n");
     getchar();
 
-    arq_funcionario = fopen("arq_funcionario.csv", "at");
+    func->status = True;
+
+    arq_funcionario = fopen("arq_funcionario.dat", "ab");
     if (arq_funcionario == NULL){
         printf("erro na criaçao do arquivo!\n");
         printf("Digite enter para continuar!");
         getchar();
+        free(func);
 
         return;}
     
-    fprintf(arq_funcionario, "%s;", func.nome);
-    fprintf(arq_funcionario, "%s;", func.cpf);
-    fprintf(arq_funcionario, "%s;", func.numero);
-    fprintf(arq_funcionario, "%s;\n", func.cargo);
-    
+    fwrite(func, sizeof(Funcionario), 1, arq_funcionario);
     fclose(arq_funcionario);
+    free(func);
 
 }
 
 void tela_visualizar_funcionario(void)
 {
     FILE *arq_funcionario;
-    Funcionario func;
-    int encontrado = 0;
+    Funcionario* func;
+    func = (Funcionario*)malloc(sizeof(Funcionario));
+
+    char cpf_lido[12];
+    int encontrado;
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -126,13 +134,16 @@ void tela_visualizar_funcionario(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    scanf("%s", func.cpf_lido);
+    scanf("%s", cpf_lido);
     getchar();
+
+    encontrado = False;
+
     system("clear");
-    printf("CPF Digitado: %s\n", func.cpf_lido);
+    printf("CPF Digitado: %s\n", cpf_lido);
     printf("\n");
 
-    arq_funcionario = fopen("arq_funcionario.csv", "rt");
+    arq_funcionario = fopen("arq_funcionario.dat", "rb");
 
     if (arq_funcionario == NULL) {
         printf("Erro na criacao do arquivo\n");
@@ -140,26 +151,26 @@ void tela_visualizar_funcionario(void)
         return;
     }
 
-    //Melhoramento de busca de funcionario.
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^;\n]", func.nome, func.cpf, func.numero, func.cargo ) == 4) {
-
-        if (strcmp(func.cpf, func.cpf_lido) == 0) {
+    while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
+        
+        if (strcmp(func->cpf, cpf_lido) == 0 && func->status == True){
             printf("Funcionário encontrado!\n");
-            printf("Nome: %s\n", func.nome);
-            printf("CPF: %s\n", func.cpf);
-            printf("Telefone: %s\n", func.numero);
-            printf("Cargo: %s\n", func.cargo);
+            printf("Nome: %s\n", func->nome);
+            printf("CPF: %s\n", func->cpf);
+            printf("Telefone: %s\n", func->numero);
+            printf("Cargo: %s\n", func->cargo);
             printf("\n");
             printf("Tecle Enter para continuar...");
-            encontrado = 1;
             getchar();
             fclose(arq_funcionario);
+            encontrado = True;
             return;
         }
     }
     fclose(arq_funcionario);
-    
-    if (!encontrado) {
+    free(func);
+
+    if (encontrado == False) {
         printf("CPF não encontrado!\n");
         printf("\n");
         printf("Pressione Enter para continuar...");
@@ -170,9 +181,13 @@ void tela_visualizar_funcionario(void)
 void tela_deletar_funcionario(void)
 {
     FILE *arq_funcionario;
-    FILE *arq_funcionariostemp;
-    Funcionario func;
-    int encontrado = 0;
+
+    Funcionario* func;
+    func = malloc(sizeof(Funcionario));
+
+    char cpf_lido[12];
+    char resposta;
+    int encontrado;
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -185,63 +200,76 @@ void tela_deletar_funcionario(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%s", cpf_lido);
 
-    arq_funcionario = fopen("arq_funcionario.csv", "rt");
+    encontrado = False;
+
+    if (func == NULL)
+    {
+        printf("Erro na alocação de memória.\n");
+    }
+
+    arq_funcionario = fopen("arq_funcionario.dat", "r+b");
+
     if (arq_funcionario == NULL) {
         printf("Erro ao abrir o arquivo de Funcionários. \n");
         getchar();
         return;
     }
 
-    arq_funcionariostemp = fopen("arq_funcionariostemp.csv", "wt");
-    if (arq_funcionariostemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos Funcionários.""\n");
-       fclose(arq_funcionario);
-       getchar();
-       return;
-    }
-    printf("Digite o CPF do Funcionário (apenas números):""\n");
-    scanf("%s", func.cpf_lido);
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n",func.nome, func.cpf, func.numero, func.cargo) == 4){
-        if (strcmp(func.cpf, func.cpf_lido) !=0) {
-        fprintf(arq_funcionariostemp, "%s;%s;%s\n", func.nome, func.cpf, func.numero);
-        } else {
-            encontrado = 1;
-        }
-    }
-    fclose(arq_funcionario);
-    fclose(arq_funcionariostemp);
+        while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
+            if (strcmp(func -> cpf, cpf_lido) !=0 && func->status == True) {
+                printf("Funcionário encontrado\n");
+                printf("Nome: %s\n", func->nome);
+                printf("CPF: %s\n", func->cpf);
+                printf("Telefone: %s\n", func->numero);
+                printf("Cargo: %s\n", func->cargo);
+                getchar();
 
-    if (!encontrado) {
-        printf("Funcionário com CPF %s não encontrado.\n", func.cpf_lido);
-        remove("arq_funcionariostemp.csv");
+                encontrado = True;
+            }
+            do {
+                printf("\nDeseja realmente excluir esse funcionário? (S/N): ");
+                scanf(" %c", &resposta);
+                resposta = confirmar_acao(resposta);
+                
+                if(resposta == 0){
+                    printf("Opção inválida! Digite apenas S ou N.\n");
+                }
+
+            } while(resposta == 0);
+
+            if (resposta == 'S')
+            {
+                func->status = False;
+                fseek(arq_funcionario, (-1)*sizeof(Funcionario), SEEK_CUR);
+                fwrite(func, sizeof(Funcionario), 1, arq_funcionario);
+                printf("\nFuncionário excluído com sucesso!\n");
+            } 
+            
+            else 
+            { 
+                printf("\nFuncionário não excluido.\n");
+            }
+            break;
+        }
+    fclose(arq_funcionario);
+
+    if (encontrado == False) {
+        printf("Funcionário com CPF %s não encontrado.\n", cpf_lido);
         getchar();
         return;
     } 
-
-    else {
-        printf("Funcionário com CPF %s encontrado e excluido.\n", func.cpf_lido);
-        
-        if (remove("arq_funcionario.csv") != 0) {
-            printf("Erro ao remover arq_funcionario.csv\n");
-            getchar();
-        }
-        if (rename("arq_funcionariostemp.csv", "arq_funcionario.csv") != 0) {
-            printf("Erro ao renomear arq_funcionariostemp.csv\n");
-            getchar();
-        }
-    getchar();
-    }
-     
-    printf("Funcionário excluido com sucesso!\n");
-    getchar();
 }
 
 void tela_atualizar_funcionario(void)
 {
     FILE *arq_funcionario;
     FILE *arq_funcionariostemp;
-    Funcionario func;
+    Funcionario* func;
+    func = (Funcionario*)malloc(sizeof(Funcionario));
+
+    char cpf_lido[12];
     int encontrado = 0;
 
     system("clear");
@@ -255,71 +283,66 @@ void tela_atualizar_funcionario(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%s", cpf_lido);
+    getchar();
 
-    arq_funcionario = fopen("arq_funcionario.csv", "rt");
-    if (arq_funcionario == NULL) {
+    encontrado = False;
+
+    arq_funcionario = fopen("arq_funcionario.dat", "rb");
+    if (arq_funcionario == NULL) 
+    {
         printf("Erro ao abrir o arquivo de Funcionários.\n");
         getchar();
         return;
     }
 
-    arq_funcionariostemp = fopen("arq_funcionariostemp.csv", "wt");
+    arq_funcionariostemp = fopen("arq_funcionariostemp.dat", "wb");
     if (arq_funcionariostemp == NULL) {
        printf("erro ao abrir o arquivo temporario dos Funcionários.""\n");
-       fclose(arq_funcionario);
        getchar();
        return;
     }
 
+    while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
+        if (strcmp(func -> cpf, cpf_lido) == 0 && func -> status == True)  {
+            encontrado = True;
 
-    printf("Digite o CPF do funcionário (apenas números):""\n");
-    scanf("%s", func.cpf_lido);
-    getchar();
-    while (fscanf(arq_funcionario, "%[^;];%[^;];%[^;];%[^\n]\n", func.nome, func.cpf, func.numero, func.cargo) == 4){
-        if (strcmp(func.cpf, func.cpf_lido) == 0) {
-            encontrado = 1;
             printf("Funcionário encontrado. Insira os novos dados do Funcionário: \n");
 
             printf("Digite seu Nome completo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.nome);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->nome);
             getchar();
             
             printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", func.cpf);
+            scanf("%[0-9]", func->cpf);
             getchar();
             
             printf("Digite seu celular (apenas números): ");
-            scanf("%[0-9]", func.numero);
+            scanf("%[0-9]", func->numero);
             getchar();
 
             printf("Digite seu Cargo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func.cargo);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->cargo);
             getchar();
 
-        } else {
-            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", func.nome, func.cpf, func.numero, func.cargo);
         } 
+        fwrite(func, sizeof(Funcionario), 1, arq_funcionariostemp);
     }
-        if (encontrado){
-            fprintf(arq_funcionariostemp, "%s;%s;%s;%s\n", func.nome, func.cpf, func.numero, func.cargo);
-            printf("Funcionário atualizado com sucesso!\n");
-        }
-        fclose(arq_funcionario);
-        fclose(arq_funcionariostemp);
 
-        if(!encontrado) {
-            printf("Funcionário não encontrado!\n");
-            remove("arq_funcionariostemp.csv");
-            getchar();
-        } else {
-            
-            if (remove("arq_funcionario.csv") != 0) {
-                printf("Erro ao remover arq_funcionarios.csv\n");
-            }
-            if (rename("arq_funcionariostemp.csv", "arq_funcionario.csv") != 0) {
-                printf("Erro ao  renomear o arq_funcionario.csv\n");
-            }
-        }
+    fclose(arq_funcionario);
+    fclose(arq_funcionariostemp);
+
+    if (encontrado) {
+        remove("arq_funcionario.dat");
+        rename("arq_funcionariostemp.dat", "arq_funcionario.dat");
+        printf("\nFuncionário Alterado com sucesso!\n");
+    } else {
+        remove("arq_funcionariostemp.dat");
+        printf("\nFuncionário não encontrado!\n");
+    }
+    
+    free(func);
     getchar();
+    
 }
 
