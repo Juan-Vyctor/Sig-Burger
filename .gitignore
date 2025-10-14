@@ -5,6 +5,9 @@
 # Prerequisites
 *.d
 
+## Bin ##
+*.dat
+
 #CSV
 *.csv
 

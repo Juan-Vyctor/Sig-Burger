@@ -8,63 +8,87 @@
 #include "./include/pedido.h"
 #include "./include/enderecos.h"
 
-//progama principal
+// programa principal
 int main(void)
 {
-    system("clear");
-    int operacao_principal = 0;
-    
-    do {
-        operacao_principal = tela_principal();
+    int opcao_gestao = 0; // controle do menu de gestão
 
-        if (operacao_principal == 1)
+    do
+    {
+        tela_gestao();
+        scanf("%d", &opcao_gestao);
+        getchar();
+
+        switch (opcao_gestao)
         {
-            modulo_cardapio();
+        case 1:
+        {
+            int operacao_principal = 0;
+
+            do
+            {
+                operacao_principal = tela_principal();
+
+                switch (operacao_principal)
+                {
+                case 1:
+                    modulo_cardapio();
+                    break;
+
+                case 2:
+                    modulo_cliente();
+                    break;
+
+                case 3:
+                    modulo_funcionario();
+                    break;
+
+                case 4:
+                    modulo_enderecos();
+                    break;
+
+                case 5:
+                    tela_historico();
+                    break;
+
+                case 0:
+                    operacao_principal = tela_confirmacao_voltar();
+                    break;
+
+                default:
+                    system("clear");
+                    printf("Esta opção é inválida, retornando ao menu inicial...\n");
+                    break;
+                }
+
+            } while (operacao_principal != 0);
+
+            tela_saida();
+            break;
         }
 
-        else if (operacao_principal == 2)
-        {
-            modulo_cliente();
-        }
-
-        else if (operacao_principal == 3)
-        {
-            modulo_funcionario();
-        }
-
-        else if (operacao_principal == 4)
-        {
-            modulo_enderecos();
-        }
-        
-        else if (operacao_principal == 5)
-        {
-            tela_historico();
-        }
-        
-        else if (operacao_principal == 6)
-        {
+        case 2:
             tela_sobre();
-        }
-        
-        else if (operacao_principal == 7)
-        {
+            break;
+
+        case 3:
             tela_equipe();
-        }
+            break;
 
-        else if (operacao_principal != 0)
-        {
+        case 0:
+            opcao_gestao = tela_confirmacao();
+            break;
+
+        default:
             system("clear");
-            printf("Está opção é inválida, retornando ao menu inicial...\n");
+            printf("Opção inválida! Tente novamente.\n");
+            break;
         }
 
-        else
-        {
-            operacao_principal = tela_confirmacao();
-        }
+    } while (opcao_gestao != 0);
 
-    } while (operacao_principal != 0);
-
+    system("clear");
     tela_saida();
+
     return 0;
 }
