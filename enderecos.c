@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "./include/enderecos.h"
+#include "./include/util.h"
+#define True 1
+#define False 0
 
 void modulo_enderecos(void){
     int operacao_principal;
@@ -53,10 +57,9 @@ int tela_menu_enderecos(void)
 void tela_cadastrar_endereco(void)
 {
     FILE *arq_endereco;
-    char cpf[12];
-    char rua[25];
-    char bairro[20];
-    char num_casa[4];
+    Enderecos* end;
+    end = (Enderecos*)malloc(sizeof(Enderecos));
+
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -69,48 +72,47 @@ void tela_cadastrar_endereco(void)
     printf("\n");
    
     printf("Digite o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    scanf("%[0-9]", end->cpf);
     getchar();
     printf("Digite o Nome da Rua: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", rua);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->rua);
     getchar();
     printf("Digite o Nome do Bairro: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", bairro);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->bairro);
     getchar();
     printf("Digite o numero da casa (apenas números): ");
-    scanf("%[0-4]", num_casa);
+    scanf("%[0-4]", end->num_casa);
     getchar();
     printf("Endereço cadastrado!\n");
     printf("Digite enter para continuar!\n");
     getchar();
 
+    end->status = True;
 
-    arq_endereco = fopen("arq_endereco.csv", "at");
+    arq_endereco = fopen("arq_endereco.dat", "ab");
     if (arq_endereco == NULL){
         printf("erro na criaçao do arquivo!\n");
         printf("Digite enter para continuar");
         getchar();
+        free(end);
 
         return;}
     
-    fprintf(arq_endereco, "%s;", cpf);
-    fprintf(arq_endereco, "%s;", rua);
-    fprintf(arq_endereco, "%s;", bairro);
-    fprintf(arq_endereco, "%s;\n", num_casa);
-
+    fwrite(end, sizeof(Enderecos), 1, arq_endereco);
     fclose(arq_endereco);
+    free(end);
 
 }
 
 void tela_visualizar_endereco(void)
 {
     FILE *arq_endereco;
-    char cpf[12];
+    Enderecos* end;
+    end = (Enderecos*)malloc(sizeof(Enderecos));
+
     char cpf_lido[12];
-    char rua[25];
-    char bairro[20];
-    char num_casa[4];
-    int encontrado = 0;
+    int encontrado;
+
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -125,11 +127,14 @@ void tela_visualizar_endereco(void)
 
     scanf("%s", cpf_lido);
     getchar();
+
+    encontrado = False;
+
     system("clear");
     printf("CPF Digitado: %s\n", cpf_lido);
     printf("\n");
 
-    arq_endereco = fopen("arq_endereco.csv", "rt");
+    arq_endereco = fopen("arq_endereco.dat", "rb");
 
     if (arq_endereco == NULL) {
         printf("Erro na criacao do arquivo\n");
@@ -137,26 +142,26 @@ void tela_visualizar_endereco(void)
         return;
     }
 
-// REMOVER FEOF!!! mas dps
-    while (fscanf(arq_endereco, "%[^;];%[^;];%[^;];%[^;\n]", cpf, rua, bairro, num_casa ) == 4) {
+    while (fread(end, sizeof(Enderecos), 1, arq_endereco)) {
         
-        if (strcmp(cpf, cpf_lido) == 0) {
+        if (strcmp(end->cpf, cpf_lido) == 0 && end->status == True) {
             printf("Endereço encontrado!\n");
-            printf("CPF: %s\n", cpf);
-            printf("Rua: %s\n", rua);
-            printf("Bairro: %s\n", bairro);
-            printf("Numero da Casa: %s\n", num_casa);
+            printf("CPF: %s\n", end->cpf);
+            printf("Rua: %s\n", end->rua);
+            printf("Bairro: %s\n", end->bairro);
+            printf("Numero da Casa: %s\n", end->num_casa);
             printf("\n");
             printf("Tecle Enter para continuar...");
-            encontrado = 1;
+            encontrado = True;
             getchar();
             fclose(arq_endereco);
             return;
         }
     }
     fclose(arq_endereco);
+    free(end);
 
-    if (!encontrado) {
+    if (!encontrado == False) {
         printf("Endereço não encontrado!\n");
         printf("\n");
         printf("Pressione Enter para continuar...");
@@ -167,13 +172,14 @@ void tela_visualizar_endereco(void)
 void tela_atualizar_endereco(void)
 {
     FILE *arq_endereco;
-    FILE *arq_enderecotemp; 
-    char cpf[12];
+    FILE *arq_enderecotemp;
+
+    Enderecos* end;
+    end = (Enderecos*)malloc(sizeof(Enderecos));
+
     char cpf_lido[12];
-    char rua[25];
-    char bairro[20];
-    char num_casa[4];
-    int encontrado = 0;
+    int encontrado;
+
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -184,86 +190,80 @@ void tela_atualizar_endereco(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("Digite o CPF (apenas números):\n");
+    scanf("%s", cpf_lido);
     getchar();
 
-    arq_endereco = fopen("arq_endereco.csv", "rt");
+    encontrado = False;
 
-    if (arq_endereco == NULL) {
+    arq_endereco = fopen("arq_endereco.dat", "rb");
+
+    if (arq_endereco == NULL)
+    {
         printf("Erro ao abrir o arquivo de Endereços.\n");
         getchar();
         return;
     }
 
-    arq_enderecotemp = fopen("arq_enderecotemp.csv", "wt");
-    if (arq_enderecotemp == NULL) {
+    arq_enderecotemp = fopen("arq_enderecotemp.dat", "wb");
+    if (arq_enderecotemp == NULL) 
+    {
        printf("erro ao abrir o arquivo temporario dos Endereços.""\n");
-       fclose(arq_endereco);
        getchar();
        return;
     }
 
 
-    printf("Digite o CPF (apenas números):""\n");
-    scanf("%s", cpf_lido);
-    getchar();
-    while (fscanf(arq_endereco, "%[^;];%[^;];%[^;];%[^\n]\n",cpf, rua, bairro, num_casa) == 4){
-        if (strcmp(cpf, cpf_lido) == 0) {
-            encontrado = 1;
+        
+    while (fread(end, sizeof(Enderecos), 1, arq_endereco)) {
+        if (strcmp(end->cpf, cpf_lido) == 0 && end->status == True) {
+            encontrado = True;
             printf("Endereço encontrado. Insira os novos dados do endereço: \n");
 
             printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", cpf);
+            scanf("%[0-9]", end->cpf);
             getchar();
 
             printf("Digite o Nome da rua: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", rua);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->rua);
             getchar();
             
             printf("Digite o Nome do bairro: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", bairro);
+            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->bairro);
             getchar();
             
             printf("Digite o Numero da Casa (apenas números): ");
-            scanf("%[0-4]", num_casa);
+            scanf("%[0-4]", end->num_casa);
             getchar();
 
-        } else {
-            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n", cpf, rua, bairro, num_casa);
         } 
-    }
-        if (encontrado){
-            fprintf(arq_enderecotemp, "%s;%s;%s;%s\n", cpf, rua, bairro, num_casa);
-            printf("Endereço atualizado com sucesso!\n");
-        }
-        fclose(arq_endereco);
-        fclose(arq_enderecotemp);
+        fwrite(end, sizeof(Enderecos), 1, arq_enderecotemp);
+    } 
 
-        if(!encontrado) {
-            printf("Endereço não encontrado!\n");
-            remove("arq_enderecotemp.csv");
-            getchar();
-        } else {
-            
-            if (remove("arq_endereco.csv") != 0) {
-                printf("Erro ao remover Endereços.csv\n");
-            }
-            if (rename("arq_enderecotemp.csv", "arq_endereco.csv") != 0) {
-                printf("Erro ao renomear o arq_endereco.csv\n");
-            }
-        }
+    fclose(arq_endereco);
+    fclose(arq_enderecotemp);
+
+    if (encontrado){
+        remove("arq_endereco.dat");
+        rename("arq_enderecotemp.dat", "arq_endereco.dat");
+        printf("\nEndereço Alterado com sucesso!\n");
+    } else {
+        remove("arq_enderecotemp.dat");
+        printf("\nEndereço não encontrado!\n");
+    }
+    free(end);
     getchar();
 }
 
 void tela_deletar_endereco(void)
 {
     FILE *arq_endereco;
-    FILE *arq_enderecotemp; 
-    char cpf[12];
+    Enderecos* end;
+    end = malloc(sizeof(Enderecos));
+
     char cpf_lido[12];
-    char rua[25];
-    char bairro[20];
-    char num_casa[4];
-    int encontrado = 0;
+    int encontrado;
+    char resposta;
 
     system("clear");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
@@ -274,58 +274,76 @@ void tela_deletar_endereco(void)
     printf("///                                                                          ///\n");
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("Digite o CPF (apenas números):\n");
+    scanf("%s", cpf_lido);
     getchar();
-    
-    arq_endereco= fopen("arq_endereco.csv", "rt");
-    if (arq_endereco== NULL) {
+
+    encontrado = False;
+
+    if (end == NULL)
+    {
+        printf("Erro na alocação de memória.\n");
+    }
+
+    arq_endereco= fopen("arq_endereco.dat", "rb");
+
+    if (arq_endereco== NULL)
+     {
         printf("Erro ao abrir o arquivo de Endereços. \n");
         getchar();
         return;
     }
 
-    arq_enderecotemp = fopen("arq_enderecotemp.csv", "wt");
-    if (arq_enderecotemp == NULL) {
-       printf("erro ao abrir o arquivo temporario dos Endereços.""\n");
-       fclose(arq_endereco);
-       getchar();
-       return;
-    }
-    printf("Digite o CPF (apenas números):\n");
-    scanf("%s", cpf_lido);
-    while (fscanf(arq_endereco, "%[^;];%[^;];%[^;]%[^\n]\n",cpf, rua, bairro, num_casa) == 4){
-        if (strcmp(cpf, cpf_lido) !=0) {
-        fprintf(arq_enderecotemp, "%s;%s;%s;%s\n",cpf, rua, bairro, num_casa);
-        } else {
-            encontrado = 1;
-        }
-    }
-    fclose(arq_endereco);
-    fclose(arq_enderecotemp);
+        while (fread(end, sizeof(Enderecos), 1, arq_endereco)) {
+            if (strcmp(end->cpf, cpf_lido) !=0 && end->status == True) {
+                printf("Endereço encontrado\n");
+                printf("CPF: %s\n", end->cpf);
+                printf("Rua: %s\n", end->rua);
+                printf("Bairro: %s\n", end->bairro);
+                printf("Numero da Casa: %s\n", end->num_casa);
+                getchar();
 
-    if (!encontrado) {
+                encontrado = True; 
+
+            }
+            do {
+                printf("\nDeseja realmente excluir esse endereço? (S/N): ");
+                scanf(" %c", &resposta);
+                resposta = confirmar_acao(resposta);
+
+                if(resposta == 0){
+                    printf("Opção inválida! Digite apenas S ou N.\n");
+                }
+
+            } while(resposta == 0);
+
+            if (resposta == 'S')
+            {
+                end->status = False;
+                fseek(arq_endereco, (-1)*sizeof(Enderecos), SEEK_CUR);
+                fwrite(end, sizeof(Enderecos), 1, arq_endereco);
+                printf("\nEndereço excluído com sucesso!\n");
+                getchar();
+            } 
+            
+            else 
+            { 
+                printf("\nEndereço não excluido.\n");
+                getchar();
+            }
+            break;
+        }
+        
+    fclose(arq_endereco);
+
+    if (encontrado == False) {
         printf("Endereço com CPF %s não encontrado.\n", cpf_lido);
-        remove("arq_enderecotemp.csv");
         getchar();
         return;
     } 
+}           
 
-    else {
-        printf("Endereço com CPF %s encontrado e excluido.\n", cpf_lido);
-        
-        if (remove("arq_endereco.csv") != 0) {
-            printf("Erro ao remover arq_endereco.csv\n");
-            getchar();
-        }
-        if (rename("arq_enderecotemp.csv", "arq_endereco.csv") != 0) {
-            printf("Erro ao renomear arq_enderecotemp.csv\n");
-            getchar();
-        }
-    getchar();
-    }
-        
-    printf("Endereço excluido com sucesso!\n");
-    getchar();
-}
+            
 
 
 
