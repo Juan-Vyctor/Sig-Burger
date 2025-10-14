@@ -178,89 +178,6 @@ void tela_visualizar_funcionario(void)
     }
 }
 
-void tela_deletar_funcionario(void)
-{
-    FILE *arq_funcionario;
-
-    Funcionario* func;
-    func = malloc(sizeof(Funcionario));
-
-    char cpf_lido[12];
-    char resposta;
-    int encontrado;
-
-    system("clear");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                          ///\n");
-    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
-    printf("///                                                                          ///\n");
-    printf("///                           Deletar Funcionário                            ///\n");
-    printf("///                                                                          ///\n");
-    printf("/// Digite o CPF do Funcionário (apenas números):                            ///\n");
-    printf("///                                                                          ///\n");
-    printf("////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    scanf("%s", cpf_lido);
-
-    encontrado = False;
-
-    if (func == NULL)
-    {
-        printf("Erro na alocação de memória.\n");
-    }
-
-    arq_funcionario = fopen("arq_funcionario.dat", "r+b");
-
-    if (arq_funcionario == NULL) {
-        printf("Erro ao abrir o arquivo de Funcionários. \n");
-        getchar();
-        return;
-    }
-
-        while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
-            if (strcmp(func -> cpf, cpf_lido) !=0 && func->status == True) {
-                printf("Funcionário encontrado\n");
-                printf("Nome: %s\n", func->nome);
-                printf("CPF: %s\n", func->cpf);
-                printf("Telefone: %s\n", func->numero);
-                printf("Cargo: %s\n", func->cargo);
-                getchar();
-
-                encontrado = True;
-            }
-            do {
-                printf("\nDeseja realmente excluir esse funcionário? (S/N): ");
-                scanf(" %c", &resposta);
-                resposta = confirmar_acao(resposta);
-                
-                if(resposta == 0){
-                    printf("Opção inválida! Digite apenas S ou N.\n");
-                }
-
-            } while(resposta == 0);
-
-            if (resposta == 'S')
-            {
-                func->status = False;
-                fseek(arq_funcionario, (-1)*sizeof(Funcionario), SEEK_CUR);
-                fwrite(func, sizeof(Funcionario), 1, arq_funcionario);
-                printf("\nFuncionário excluído com sucesso!\n");
-            } 
-            
-            else 
-            { 
-                printf("\nFuncionário não excluido.\n");
-            }
-            break;
-        }
-    fclose(arq_funcionario);
-
-    if (encontrado == False) {
-        printf("Funcionário com CPF %s não encontrado.\n", cpf_lido);
-        getchar();
-        return;
-    } 
-}
 
 void tela_atualizar_funcionario(void)
 {
@@ -346,3 +263,87 @@ void tela_atualizar_funcionario(void)
     
 }
 
+void tela_deletar_funcionario(void)
+{
+    FILE *arq_funcionario;
+
+    Funcionario* func;
+    func = malloc(sizeof(Funcionario));
+
+    char cpf_lido[12];
+    char resposta;
+    int encontrado;
+
+    system("clear");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                          ///\n");
+    printf("///                   = = = = = Sig - Burguer = = = = =                      ///\n");
+    printf("///                                                                          ///\n");
+    printf("///                           Deletar Funcionário                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("/// Digite o CPF do Funcionário (apenas números):                            ///\n");
+    printf("///                                                                          ///\n");
+    printf("////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    scanf("%s", cpf_lido);
+    getchar();
+
+    encontrado = False;
+
+    if (func == NULL)
+    {
+        printf("Erro na alocação de memória.\n");
+    }
+
+    arq_funcionario = fopen("arq_funcionario.dat", "r+b");
+
+    if (arq_funcionario == NULL) {
+        printf("Erro ao abrir o arquivo de Funcionários. \n");
+        getchar();
+        return;
+    }
+
+        while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
+            if (strcmp(func -> cpf, cpf_lido) !=0 && func->status == True) {
+                printf("Funcionário encontrado\n");
+                printf("Nome: %s\n", func->nome);
+                printf("CPF: %s\n", func->cpf);
+                printf("Telefone: %s\n", func->numero);
+                printf("Cargo: %s\n", func->cargo);
+                getchar();
+
+                encontrado = True;
+            }
+            do {
+                printf("\nDeseja realmente excluir esse funcionário? (S/N): ");
+                scanf(" %c", &resposta);
+                resposta = confirmar_acao(resposta);
+                
+                if(resposta == 0){
+                    printf("Opção inválida! Digite apenas S ou N.\n");
+                }
+
+            } while(resposta == 0);
+
+            if (resposta == 'S')
+            {
+                func->status = False;
+                fseek(arq_funcionario, (-1)*sizeof(Funcionario), SEEK_CUR);
+                fwrite(func, sizeof(Funcionario), 1, arq_funcionario);
+                printf("\nFuncionário excluído com sucesso!\n");
+            } 
+            
+            else 
+            { 
+                printf("\nFuncionário não excluido.\n");
+            }
+            break;
+        }
+    fclose(arq_funcionario);
+
+    if (encontrado == False) {
+        printf("Funcionário com CPF %s não encontrado.\n", cpf_lido);
+        getchar();
+        return;
+    } 
+}
