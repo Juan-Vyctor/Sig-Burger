@@ -98,5 +98,6 @@ Antes de começar, instale no seu computador:
 | Integrante                       | E-mail                                                                              |
 | -------------------------------- | ----------------------------------------------------------------------------------- |
 | Renan Medeiros Nogueira          | [renan.medeiros.nogueira.150@ufrn.edu.br](mailto:infobasicifrn2017marcusv@gmailcom) |
+| Juan Victor Silva Garcia de Oliveira| [ juan.oliveira.704@ufrn.edu.br](juan.oliveira.704@ufrn.edu.br) |
 | Luis Felipe Linhares Pereira     | [luis.felipe.linhares.701@ufrn.edu.br](mailto:luis.felipe.linhares.701@ufrn.edu.br) |
 |      | [](mailto:) |
