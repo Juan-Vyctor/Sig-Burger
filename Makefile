@@ -1,6 +1,6 @@
 all:
 	gcc -c -Wall *.c
-	gcc -o main *.o
+	gcc -o sig_burger *.o
 
 clear:
-	rm *.o main
+	rm *.o sig_burger
