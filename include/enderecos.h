@@ -6,8 +6,8 @@
     struct enderecos {
 
         char cpf[12];
-        char rua[25];
-        char bairro[20];
+        char rua[50];
+        char bairro[25];
         char num_casa[4];
         int status;
 
