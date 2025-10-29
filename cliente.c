@@ -6,7 +6,6 @@
 #include "./include/cliente.h"
 #define True 1
 #define False 0
-// #include "./include/validacoes.h"
 
 void modulo_cliente(void)
 {
@@ -80,14 +79,11 @@ void tela_cadastrar_cliente(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    printf("Digite seu Nome completo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cli->nome);
+    ler_nome(cli->nome);
     getchar();
-    printf("Digite seu CPF (apenas números): ");
-    scanf("%[0-9]", cli->cpf);
+    ler_cpf(cli->cpf);
     getchar();
-    printf("Digite seu celular (apenas números): ");
-    scanf("%[0-9]", cli->numero);
+    ler_numero(cli->numero);
     getchar();
     printf("cliente cadastrado!\n");
     printf("Digite enter para continuar!");
@@ -233,16 +229,13 @@ void tela_atualizar_cliente(void)
         
             printf("Cliente encontrado. Insira os novos dados do cliente: \n");
 
-            printf("Digite seu Nome completo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cli->nome);
+            ler_nome(cli->nome);
             getchar();
 
-            printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", cli->cpf);
+            ler_cpf(cli->cpf);
             getchar();
 
-            printf("Digite seu celular (apenas números): ");
-            scanf("%[0-9]", cli->numero);
+            ler_numero(cli->numero);
             getchar();
         }
         fwrite(cli, sizeof(Cliente), 1, arq_clientestemp);

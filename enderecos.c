@@ -71,18 +71,18 @@ void tela_cadastrar_endereco(void)
     printf("////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
    
-    printf("Digite o CPF (apenas números): ");
-    scanf("%[0-9]", end->cpf);
+    ler_cpf(end->cpf);
     getchar();
-    printf("Digite o Nome da Rua: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->rua);
+    
+    ler_rua(end->rua);
     getchar();
-    printf("Digite o Nome do Bairro: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->bairro);
+    
+    ler_bairro(end->bairro);
     getchar();
-    printf("Digite o numero da casa (apenas números): ");
-    scanf("%[0-4]", end->num_casa);
+    
+    ler_num_casa(end->num_casa);
     getchar();
+    
     printf("Endereço cadastrado!\n");
     printf("Digite enter para continuar!\n");
     getchar();
@@ -220,20 +220,16 @@ void tela_atualizar_endereco(void)
             encontrado = True;
             printf("Endereço encontrado. Insira os novos dados do endereço: \n");
 
-            printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", end->cpf);
+            ler_cpf(end->cpf);
             getchar();
 
-            printf("Digite o Nome da rua: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->rua);
+            ler_rua(end->rua);
             getchar();
-            
-            printf("Digite o Nome do bairro: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end->bairro);
+
+            ler_bairro(end->bairro);
             getchar();
-            
-            printf("Digite o Numero da Casa (apenas números): ");
-            scanf("%[0-4]", end->num_casa);
+
+            ler_num_casa(end->num_casa);
             getchar();
 
         } 
