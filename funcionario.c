@@ -79,19 +79,19 @@ void tela_cadastrar_funcionario(void)
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    
+    ler_nome(func->nome);
+    getchar();
+    
+    ler_cpf(func->cpf);
+    getchar();
+    
+    ler_numero(func->numero);
+    getchar();
+    
+    ler_cargo(func->cargo);
+    getchar();
 
-    printf("Digite o Nome completo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->nome);
-    getchar();
-    printf("Digite o CPF (apenas números): ");
-    scanf("%[0-9]", func->cpf);
-    getchar();
-    printf("Digite o Celular (apenas números): ");
-    scanf("%[0-9]", func->numero);
-    getchar();
-    printf("Digite o cargo: ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->cargo);
-    getchar();
     printf("Funcionário cadastrado!\n");
     printf("Digite enter para continuar!\n");
     getchar();
@@ -226,22 +226,21 @@ void tela_atualizar_funcionario(void)
 
             printf("Funcionário encontrado. Insira os novos dados do Funcionário: \n");
 
-            printf("Digite seu Nome completo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->nome);
-            getchar();
-            
-            printf("Digite seu CPF (apenas números): ");
-            scanf("%[0-9]", func->cpf);
-            getchar();
-            
-            printf("Digite seu celular (apenas números): ");
-            scanf("%[0-9]", func->numero);
+            ler_nome(func->nome);
             getchar();
 
-            printf("Digite seu Cargo: ");
-            scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", func->cargo);
+            ler_cpf(func->cpf);
             getchar();
 
+            ler_numero(func->numero);
+            getchar();
+
+            ler_cargo(func->cargo);
+            getchar();
+
+
+            
+            
         } 
         fwrite(func, sizeof(Funcionario), 1, arq_funcionariostemp);
     }
