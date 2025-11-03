@@ -120,6 +120,7 @@ void tela_visualizar_produto(void)
     printf("///                         Buscar Produto                                  ///\n");
     printf("///                                                                         ///\n");
     printf("/// Digite o nome do produto:                                               ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n\n");
 
     fgets(nome_lido, sizeof(nome_lido), stdin);
@@ -174,6 +175,7 @@ void tela_atualizar_produto(void)
     printf("///                   = = = = = Sig - Burguer = = = = =                     ///\n");
     printf("///                                                                         ///\n");
     printf("///                         Atualizar Produto                               ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n\n");
 
     printf("Digite o nome do produto que deseja atualizar: ");
@@ -243,6 +245,7 @@ void tela_deletar_produto(void)
     printf("///                   = = = = = Sig - Burguer = = = = =                     ///\n");
     printf("///                                                                         ///\n");
     printf("///                         Deletar Produto                                 ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n\n");
 
     printf("Digite o nome do produto: ");
