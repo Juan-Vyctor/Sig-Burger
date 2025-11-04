@@ -9,6 +9,8 @@
     void ler_rua(char*);
     void ler_bairro(char*);
     void ler_num_casa(char*);
+    void ler_preco(char*);
+    void ler_ingredientes(char*);
 
 
 #endif

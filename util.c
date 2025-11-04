@@ -121,3 +121,33 @@ void ler_num_casa(char *num_casa)
         }
     } while (!valido);
 }
+
+void ler_preco(char *preco)
+{
+    int valido = 0;
+    do
+    {
+        printf("Digite o preço: ");
+        scanf("%s", preco);
+        valido = valida_preco(preco);
+        if (!valido)
+        {
+            printf("Preço inválido! Digite novamente.\n");
+        }
+    } while (!valido);
+}
+
+void ler_ingredientes(char *ingredientes)
+{
+    int valido = 0;
+    do
+    {
+        printf("Digite os ingredientes (separe por vírgulas): ");
+        scanf(" %[^\n]", ingredientes);
+        valido = valida_ingredientes(ingredientes);
+        if (!valido)
+        {
+            printf("Ingredientes inválidos! Digite novamente.\n");
+        }
+    } while (!valido);
+}
