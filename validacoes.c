@@ -6,21 +6,25 @@
 #include <time.h>
 #include <locale.h>
 
-int valida_nome(char *nome) {
+int valida_nome(char *nome)
+{
     setlocale(LC_CTYPE, "");
 
     int tamanho = strlen(nome);
 
     // Permite nomes a partir de 2 letras
-    if (tamanho < 2) {
+    if (tamanho < 2)
+    {
         return 0;
     }
 
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         unsigned char c = nome[i];
 
         // Permite apenas letras, espaços e acentos
-        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c))) {
+        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c)))
+        {
             return 0;
         }
     }
@@ -28,16 +32,20 @@ int valida_nome(char *nome) {
     return 1;
 }
 
-int valida_cpf(char *cpf) {
+int valida_cpf(char *cpf)
+{
     setlocale(LC_CTYPE, "");
     int tamanho = strlen(cpf);
 
-    if (tamanho != 11) {
+    if (tamanho != 11)
+    {
         return 0;
     }
 
-    for (int i = 0; i < tamanho; i++) {
-        if (!isdigit(cpf[i])) {
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (!isdigit(cpf[i]))
+        {
             return 0;
         }
     }
@@ -45,15 +53,19 @@ int valida_cpf(char *cpf) {
     return 1;
 }
 
-int valida_numero(char *numero) {
+int valida_numero(char *numero)
+{
     setlocale(LC_CTYPE, "");
     int tamanho = strlen(numero);
 
-    if (tamanho < 11) {
+    if (tamanho < 11)
+    {
         return 0;
     }
-    for (int i = 0; i < tamanho; i++) {
-        if (!isdigit(numero[i])) {
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (!isdigit(numero[i]))
+        {
             return 0;
         }
     }
@@ -61,18 +73,22 @@ int valida_numero(char *numero) {
     return 1;
 }
 
-int valida_cargo(char *cargo) {
+int valida_cargo(char *cargo)
+{
     setlocale(LC_CTYPE, "");
 
     int tamanho = strlen(cargo);
 
-    if (tamanho < 2) {
+    if (tamanho < 2)
+    {
         return 0;
     }
 
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         unsigned char c = cargo[i];
-        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c))) {
+        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c)))
+        {
             return 0;
         }
     }
@@ -80,21 +96,25 @@ int valida_cargo(char *cargo) {
     return 1;
 }
 
-int valida_rua(char *rua) {
+int valida_rua(char *rua)
+{
     setlocale(LC_CTYPE, "");
 
     int tamanho = strlen(rua);
 
     // Permite nomes a partir de 2 letras
-    if (tamanho < 2) {
+    if (tamanho < 2)
+    {
         return 0;
     }
 
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         unsigned char c = rua[i];
 
         // Permite apenas letras, espaços e acentos
-        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c))) {
+        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c)))
+        {
             return 0;
         }
     }
@@ -102,16 +122,20 @@ int valida_rua(char *rua) {
     return 1;
 }
 
-int valida_bairro(char *bairro) {
+int valida_bairro(char *bairro)
+{
     setlocale(LC_CTYPE, "");
 
     int tamanho = strlen(bairro);
-    if (tamanho < 2) {
+    if (tamanho < 2)
+    {
         return 0;
     }
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         unsigned char c = bairro[i];
-        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c))) {
+        if (!(isalpha(c) || c == ' ' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c)))
+        {
             return 0;
         }
     }
@@ -119,17 +143,67 @@ int valida_bairro(char *bairro) {
     return 1;
 }
 
-int valida_num_casa(char *num_casa) {
+int valida_num_casa(char *num_casa)
+{
     setlocale(LC_CTYPE, "");
 
     int tamanho = strlen(num_casa);
 
-    if (tamanho < 1 || tamanho > 4) {
+    if (tamanho < 1 || tamanho > 4)
+    {
         return 0;
     }
-    
-    for (int i = 0; i < tamanho; i++) {
-        if (!isdigit(num_casa[i])) {
+
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (!isdigit(num_casa[i]))
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int valida_preco(char *preco)
+{
+    int ponto_decimal_encontrado = 0;
+    int len = strlen(preco);
+
+    if (len == 0) return 0;
+    if (strcmp(preco, ".") == 0) return 0;
+
+    for (int i = 0; i < len; i++)
+    {
+        char c = preco[i];
+        if (c == '.')
+        {
+            if (ponto_decimal_encontrado) return 0;
+            ponto_decimal_encontrado = 1;
+        }
+        else if (!isdigit(c))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int valida_ingredientes(char *ingredientes)
+{
+    setlocale(LC_CTYPE, "");
+
+    int tamanho = strlen(ingredientes);
+
+    if (tamanho < 2)
+    {
+        return 0;
+    }
+    for (int i = 0; i < tamanho; i++)
+    {
+        unsigned char c = ingredientes[i];
+        if (!(isalpha(c) || c == ' ' || c == ',' || strchr("áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ", c)))
+        {
             return 0;
         }
     }

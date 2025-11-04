@@ -1,10 +1,18 @@
 #ifndef CARDAPIO_H
 #define CARDAPIO_H
 
-    void modulo_cardapio(void);
-    int tela_menu_cardapio(void);
-    int tela_cardapio(void);
-    int tela_produto(void);
-    int tela_adicionar_produto(void);
-    
+typedef struct produto {
+    char nome[50];
+    char preco[11];
+    char ingredientes[200];
+    int status;
+} Produto;
+
+void modulo_cardapio(void);
+int tela_menu_cardapio(void);
+void tela_cadastrar_produto(void);
+void tela_visualizar_produto(void);
+void tela_atualizar_produto(void);
+void tela_deletar_produto(void);
+
 #endif

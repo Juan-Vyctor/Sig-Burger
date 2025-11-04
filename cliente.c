@@ -148,7 +148,7 @@ void tela_visualizar_cliente(void)
         getchar();
         return;
     }
-    // REMOVER FEOF!!! mas dps
+   
     while (fread(cli, sizeof(Cliente), 1, arq_cliente))
     {
 

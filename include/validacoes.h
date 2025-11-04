@@ -9,5 +9,7 @@ int valida_cargo(char *cargo);
 int valida_rua(char *rua);
 int valida_bairro(char *bairro);
 int valida_num_casa(char *num_casa);
+int valida_preco(char *preco);
+int valida_ingredientes(char *ingredientes);
 
 #endif
