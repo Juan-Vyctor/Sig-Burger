@@ -148,7 +148,7 @@ void listar_todos_enderecos(){
             printf("Número da Casa: %s\n", end->num_casa);
             printf("-------------------------------\n");
         }
-        
+
     fclose(arq_endereco);
     free(end);
     getchar();
@@ -165,6 +165,15 @@ void relatorio(){
         switch (opcao_relatorio){
             case 1:
                 listar_todos_clientes();
+                break;
+            case 2:
+                listar_todos_funcionarios();
+                break;
+            case 3:
+                listar_todos_produtos();
+                break;
+            case 4:
+                listar_todos_enderecos();
                 break;
             case 0:
                 printf("Voltando ao menu principal...\n");
