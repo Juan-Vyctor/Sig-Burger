@@ -124,6 +124,38 @@ void listar_todos_produtos(){
 
 
 
+void listar_todos_enderecos(){
+    FILE *arq_endereco;
+    Enderecos* end;
+    end = (Enderecos*)malloc(sizeof(Enderecos));
+
+    arq_endereco = fopen("arq_endereco.dat", "rb");
+    if (arq_endereco == NULL)
+    {
+        printf("Erro ao abrir o arquivo de endereços.\n");
+        getchar();
+        return;
+    }
+
+    printf("\nLista de Endereços Cadastrados:\n");
+    printf("-------------------------------\n");
+
+    while (fread(end, sizeof(Enderecos), 1, arq_endereco)) {
+
+            printf("CPF do Cliente: %s\n", end->cpf);
+            printf("Rua: %s\n", end->rua);
+            printf("Bairro: %s\n", end->bairro);
+            printf("Número da Casa: %s\n", end->num_casa);
+            printf("-------------------------------\n");
+        }
+        
+    fclose(arq_endereco);
+    free(end);
+    getchar();
+}
+
+
+
 void relatorio(){
     int opcao_relatorio;
     do{
@@ -143,6 +175,8 @@ void relatorio(){
         }
     }while(opcao_relatorio !=0);
 }
+
+
 
 
 
