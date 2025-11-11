@@ -4,6 +4,11 @@
 #include "cliente.h"
 #include "util.h"
 #include "funcionario.h"
+#include "cardapio.h"
+#include "relatorio.h"
+#include "enderecos.h"
+#define True 1
+#define False 0
 
 
 
@@ -83,9 +88,37 @@ void listar_todos_funcionarios(){
             printf("Telefone: %s\n", func->numero);
             printf("-------------------------------\n");
         }
-        
+
     fclose(arq_funcionario);
     free(func);
+    getchar();
+}
+
+
+
+void listar_todos_produtos(){
+    FILE *arq_cardapio;
+    Produto *prod;
+    prod = (Produto*) malloc(sizeof(Produto));
+    arq_cardapio = fopen("arq_cardapio.dat", "rb");
+    if (arq_cardapio == NULL)
+    {
+        printf("Erro ao abrir o arquivo de cardápio.\n");
+        getchar();
+        return;
+    }
+    printf("\nLista de Produtos Cadastrados:\n");
+    printf("-------------------------------\n");
+    while (fread(prod, sizeof(Produto), 1, arq_cardapio))
+    {
+            printf("Nome: %s\n", prod->nome);
+            printf("Preço: R$ %s\n", prod->preco);
+            printf("Ingredientes: %s\n", prod->ingredientes);
+            printf("-------------------------------\n");
+
+    }
+    fclose(arq_cardapio);
+    free(prod);
     getchar();
 }
 
