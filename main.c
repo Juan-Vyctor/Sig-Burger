@@ -7,6 +7,7 @@
 #include "./include/historico.h"
 #include "./include/pedido.h"
 #include "./include/enderecos.h"
+#include "./include/relatorio.h"
 
 // programa principal
 int main(void)
@@ -48,7 +49,7 @@ int main(void)
                     break;
 
                 case 5:
-                    tela_historico();
+                    relatorio();
                     break;
 
                 case 0:
