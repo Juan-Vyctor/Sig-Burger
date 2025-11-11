@@ -111,7 +111,7 @@ void tela_cadastrar_funcionario(void)
     fclose(arq_funcionario);
     free(func);
 
-    fclose(arq_funcionario);
+    
 
 }
 
