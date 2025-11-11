@@ -32,7 +32,7 @@ int tela_principal(void)
     printf("///            2. Menu Clientes                                             ///\n");
     printf("///            3. Menu Funcionários                                         ///\n");
     printf("///            4. Menu Endereços                                            ///\n");
-    printf("///            5. Histórico de pedidos                                      ///\n");
+    printf("///            5. menu relatorio                                            ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
