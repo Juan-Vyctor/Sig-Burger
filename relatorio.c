@@ -22,7 +22,7 @@ void menu_relatorio(){
     printf("///   0. Voltar                                                             ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("escolha uma opção: \n");
+    printf("escolha uma opção: ");
 
 }
 
@@ -41,7 +41,7 @@ void listar_todos_clientes(){
         return;
     }
 
-    printf("Lista de Clientes Cadastrados:\n");
+    printf("\nLista de Clientes Cadastrados:\n");
     printf("-------------------------------\n");
 
     while (fread(cli, sizeof(Cliente), 1, arq_cliente)) {
@@ -55,6 +55,37 @@ void listar_todos_clientes(){
 
     fclose(arq_cliente);
     free(cli);
+    getchar();
+}
+
+
+
+void listar_todos_funcionarios(){
+    FILE *arq_funcionario;
+    Funcionario* func;
+    func = (Funcionario*)malloc(sizeof(Funcionario));
+
+    arq_funcionario = fopen("arq_funcionario.dat", "rb");
+    if (arq_funcionario == NULL)
+    {
+        printf("Erro ao abrir o arquivo de funcionarios.\n");
+        getchar();
+        return;
+    }
+
+    printf("\nLista de Funcionarios Cadastrados:\n");
+    printf("-------------------------------\n");
+
+    while (fread(func, sizeof(Funcionario), 1, arq_funcionario)) {
+
+            printf("Nome: %s\n", func->nome);
+            printf("CPF: %s\n", func->cpf);
+            printf("Telefone: %s\n", func->numero);
+            printf("-------------------------------\n");
+        }
+        
+    fclose(arq_funcionario);
+    free(func);
     getchar();
 }
 
