@@ -106,7 +106,6 @@ void tela_cadastrar_cliente(void)
     fclose(arq_cliente);
     free(cli);
 
-    fclose(arq_cliente);
 
 }
 
